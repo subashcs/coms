@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+* {
+  margin: 0;
+}
+/* style for all buttons */
+button {
+  background-color: #191b2b;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity: 1;
+}

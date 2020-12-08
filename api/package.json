@@ -1,0 +1,29 @@
+{
+  "name": "coms",
+  "version": "1.0.0",
+  "description": "Customer Order Management System API",
+  "main": "server.js",
+  "author": "subash",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "http-status": "^1.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.29.1",
+    "mongoose": "^5.11.4",
+    "nodemailer": "^6.4.16",
+    "validator": "^13.5.1",
+    "winston": "^3.3.3"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6"
+  }
+}
