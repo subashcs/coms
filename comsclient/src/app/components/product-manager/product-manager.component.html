@@ -1,4 +1,5 @@
 <h3>Product Manager</h3>
+
 <table border="2" class="product-table">
   <thead>
     <tr>
@@ -21,9 +22,19 @@
       <td>{{ product.availableQuantity }}</td>
       <td>
         <span><i class="fa fa-trash"></i></span
-        ><span><i class="fa fa-pencil"></i></span>
+        ><span (click)="editProduct(product)"
+          ><i class="fa fa-pencil"></i
+        ></span>
       </td>
     </tr>
   </tbody>
 </table>
-<product-form></product-form>
+
+<button class="floating-product-button btn-secondary">
+  <i class="fa fa-plus"></i> Add Product
+</button>
+
+<product-form
+  [currentProduct]="currentProduct"
+  [isEdit]="isEdit"
+></product-form>

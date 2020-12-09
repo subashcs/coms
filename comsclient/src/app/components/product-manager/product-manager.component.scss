@@ -4,12 +4,20 @@ h3 {
   padding: 5px;
   margin-top: 5px;
 }
+.floating-product-button {
+  position: fixed;
+  bottom: 50%;
+  right: 0;
+  display: inline-block;
+  width: fit-content;
+}
 .product-table {
   align-items: center;
   margin: 0 auto;
   border-collapse: collapse;
   border-color: #dad6e2;
   background-color: #000;
+
   color: #fff;
   tbody tr,
   thead tr {
