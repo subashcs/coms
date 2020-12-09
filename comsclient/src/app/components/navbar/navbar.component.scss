@@ -5,7 +5,6 @@
   background-color: #e6e4e4f0;
   display: flex;
   justify-content: center;
-  flex-direction: row;
   text-align: center;
   align-items: center;
   padding: 5px 15px 5px 0;
@@ -50,5 +49,18 @@
     span {
       padding: 5px;
     }
+  }
+}
+/* Change styles on  small screens */
+@media screen and (max-width: 450px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+    .icon-with-text {
+      margin-left: 0%;
+    }
+  }
+  .left {
+    margin: none;
   }
 }

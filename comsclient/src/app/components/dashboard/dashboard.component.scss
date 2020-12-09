@@ -1,0 +1,10 @@
+.product-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  justify-content: center;
+  align-items: center;
+}
+.container {
+  display: block;
+  text-align: center;
+}

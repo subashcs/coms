@@ -1,7 +1,8 @@
-export class Product {
+export class CartItem {
     id:string;
     name:string;
     imageUrl:string;
     price:number;
     description:string;
+    quantity:number;
 }

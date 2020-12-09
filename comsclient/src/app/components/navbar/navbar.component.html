@@ -1,6 +1,6 @@
 <nav class="navbar">
   <div class="icon-with-text left">
-    <a class="icon">
+    <a href="" class="icon">
       <img
         src="https://www.a2bf.com/wp-content/uploads/2017/05/Order-Management-Icon.jpg"
       />
@@ -8,9 +8,12 @@
     <span>Customer Order Management System (COMS)</span>
   </div>
 
-  <a href="#">Home</a>|
+  <a href="#">Home</a>
   <a href="#">Customers</a>
-  <div class="icon-with-text text-down">
+  <a href="cart">My Cart</a>
+  <a *ngIf="isLoggedIn" href="order">My Orders</a>
+
+  <div *ngIf="isLoggedIn; else notLoggedIn" class="icon-with-text text-down">
     <a class="icon">
       <img
         src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
@@ -18,4 +21,7 @@
     </a>
     <span>Profile</span>
   </div>
+  <ng-template #notLoggedIn>
+    <a href="/login">Login</a>
+  </ng-template>
 </nav>

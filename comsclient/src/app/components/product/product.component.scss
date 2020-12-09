@@ -1,0 +1,35 @@
+.product-card {
+  display: inline-block;
+  position: relative;
+  padding: 3px;
+  border: 0px;
+  border-radius: 5px;
+  margin: 10px 15px;
+  text-align: center;
+  box-shadow: 3px 1px 2px #807e7b;
+
+  font-family: "Courier New", Courier, monospace;
+  img {
+    object-fit: cover;
+    padding: 0;
+    margin: 0;
+    max-width: 400px;
+    height: 400px;
+    z-index: -1;
+  }
+  .price {
+    font-weight: 600;
+    color: #d8b519;
+  }
+  .description {
+    position: absolute;
+    top: 3px;
+    border: 15px;
+    display: none;
+    color: #fff;
+    background-color: #100f35d2;
+  }
+}
+.product-card:hover .description {
+  display: block;
+}
