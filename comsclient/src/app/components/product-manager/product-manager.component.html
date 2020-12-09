@@ -26,35 +26,4 @@
     </tr>
   </tbody>
 </table>
-<form>
-  <h3>Product Form</h3>
-  <label for="name"><b>Product Name</b></label>
-  <input type="text" placeholder="Enter Product Name" name="name" required />
-
-  <label for="price"><b>Price</b></label>
-  <input type="number" placeholder="Enter Price" name="price" required />
-
-  <label for="unit"><b>Unit</b></label>
-  <input type="text" placeholder="Enter Unit of Measure" name="unit" required />
-
-  <label for="imageUrl"><b>Feature Image</b></label>
-  <input type="text" placeholder="Enter Image URL" name="imageUrl" required />
-
-  <label for="availableQuantity"><b>Available Quantity</b></label>
-  <input
-    type="number"
-    placeholder="Enter Available Quantity"
-    name="availableQuantity"
-    required
-  />
-  <label for="Description"><b>Description</b></label>
-  <textarea name="description"> Add Product Description</textarea>
-
-  <button *ngIf="isEditing; else notEditing" type="submit" class="btn-primary">
-    Update
-  </button>
-
-  <ng-template #notEditing>
-    <button type="submit" class="btn-primary">Add</button>
-  </ng-template>
-</form>
+<product-form></product-form>

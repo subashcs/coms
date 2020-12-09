@@ -9,11 +9,15 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class ProductManagerComponent implements OnInit {
   products:Product[];
+  currentProduct:Product;
   isEditing=false;
   constructor(private productService:ProductService) { }
 
   ngOnInit() {
     this.products = this.productService.products;
+  }
+  editProduct(product:Product){
+    this.currentProduct = product;
   }
 
 }
