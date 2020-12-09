@@ -22,6 +22,18 @@ const productSchema = mongoose.Schema(
         }
       },
     },
+    availableQuantity: {
+      type: Number,
+      validator(value) {
+        if (value < 0) {
+          throw new Error("Quantity cannot be negative number");
+        }
+      },
+    },
+    unit: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
       required: true,

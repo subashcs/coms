@@ -10,7 +10,7 @@ export class ProductService {
   productURL :'http://localhost:5000/v1/products';
   productLimit:'?limit=5'
   productPage:'&page=1'
-   products=  [
+  products=  [
     {
       id:"2131231323",
       name:"Samsung mobile",

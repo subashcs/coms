@@ -28,6 +28,7 @@ export class CartComponent implements OnInit {
   removeItem(cartItem:CartItem){
     const itemId =  cartItem.id;
     this.cart =this.cartService.removeCartItem(itemId);
+    this.updateTotal();
   }
  
 
