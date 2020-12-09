@@ -21,5 +21,17 @@ export class ProductManagerComponent implements OnInit {
     this.currentProduct = product;
     this.isEdit= true;
   }
+  addProductForm(){
+    this.isEdit=false;
+    this.currentProduct={
+      id:'',
+      name:'',
+      imageUrl:'',
+      price:0,
+      description:'',
+      availableQuantity:0,
+      unit:''
+    }
+  }
 
 }
