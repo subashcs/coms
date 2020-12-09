@@ -10,7 +10,8 @@
 
   <a href="#">Home</a>
   <a href="#">Customers</a>
-  <a href="cart">My Cart</a>
+  <a href="cart">Cart</a>
+  <a href="admin/products">ManageProducts</a>
   <a *ngIf="isLoggedIn" href="order">My Orders</a>
 
   <div *ngIf="isLoggedIn; else notLoggedIn" class="icon-with-text text-down">

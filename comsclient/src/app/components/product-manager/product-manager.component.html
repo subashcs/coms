@@ -1,11 +1,60 @@
-<p>product-manager works!</p>
-<table>
-  <tr>
-    <th>id</th>
-    <th>name</th>
-    <th>image Url</th>
-    <th>description</th>
-    <th>price</th>
-    <th>available Quantity</th>
-  </tr>
+<h3>Product Manager</h3>
+<table border="2" class="product-table">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>image Url</th>
+      <th>description</th>
+      <th>price</th>
+      <th>available Quantity</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td>{{ product.id }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.imageUrl }}</td>
+      <td>{{ product.description }}</td>
+      <td>{{ product.price }}</td>
+      <td>{{ product.availableQuantity }}</td>
+      <td>
+        <span><i class="fa fa-trash"></i></span
+        ><span><i class="fa fa-pencil"></i></span>
+      </td>
+    </tr>
+  </tbody>
 </table>
+<form>
+  <h3>Product Form</h3>
+  <label for="name"><b>Product Name</b></label>
+  <input type="text" placeholder="Enter Product Name" name="name" required />
+
+  <label for="price"><b>Price</b></label>
+  <input type="number" placeholder="Enter Price" name="price" required />
+
+  <label for="unit"><b>Unit</b></label>
+  <input type="text" placeholder="Enter Unit of Measure" name="unit" required />
+
+  <label for="imageUrl"><b>Feature Image</b></label>
+  <input type="text" placeholder="Enter Image URL" name="imageUrl" required />
+
+  <label for="availableQuantity"><b>Available Quantity</b></label>
+  <input
+    type="number"
+    placeholder="Enter Available Quantity"
+    name="availableQuantity"
+    required
+  />
+  <label for="Description"><b>Description</b></label>
+  <textarea name="description"> Add Product Description</textarea>
+
+  <button *ngIf="isEditing; else notEditing" type="submit" class="btn-primary">
+    Update
+  </button>
+
+  <ng-template #notEditing>
+    <button type="submit" class="btn-primary">Add</button>
+  </ng-template>
+</form>

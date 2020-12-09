@@ -1,0 +1,39 @@
+h3 {
+  display: block;
+  text-align: center;
+  padding: 5px;
+  margin-top: 5px;
+}
+.product-table {
+  align-items: center;
+  margin: 0 auto;
+  border-collapse: collapse;
+  border-color: #dad6e2;
+  background-color: #000;
+  color: #fff;
+  tbody tr,
+  thead tr {
+    th {
+      text-transform: capitalize;
+    }
+    th,
+    td {
+      padding: 5px;
+      max-width: 200px;
+      word-wrap: break-word;
+      text-align: justify;
+
+      span {
+        padding: 5px;
+      }
+    }
+  }
+}
+
+form {
+  max-width: 700px;
+  margin: 0 auto;
+  h3 {
+    text-align: center;
+  }
+}

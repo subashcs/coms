@@ -13,6 +13,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { OrderComponent } from './components/order/order.component';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { ProductManagerComponent } from './components/product-manager/product-manager.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ProductManagerComponent } from './components/product-manager/product-ma
     CartComponent,
     OrderComponent,
     CartItemComponent,
-    ProductManagerComponent
+    ProductManagerComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

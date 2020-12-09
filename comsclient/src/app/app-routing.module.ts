@@ -4,6 +4,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
 import { OrderComponent } from './components/order/order.component';
+import { ProductManagerComponent } from './components/product-manager/product-manager.component';
 import { SignupComponent } from './components/signup/signup.component';
 
 
@@ -12,7 +13,7 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'cart',component:CartComponent},
   {path:'orders',component:OrderComponent},
-
+  {path:'admin/products',component:ProductManagerComponent},
   {path:'',component:DashboardComponent}
 ];
 
