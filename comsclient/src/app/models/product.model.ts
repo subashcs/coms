@@ -4,4 +4,6 @@ export class Product {
     imageUrl:string;
     price:number;
     description:string;
+    availableQuantity:number
+    unit:string
 }

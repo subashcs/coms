@@ -4,7 +4,6 @@
 }
 /* style for all buttons */
 button {
-  background-color: #191b2b;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -16,4 +15,11 @@ button {
 
 button:hover {
   opacity: 1;
+}
+
+.btn-secondary {
+  background-color: #f44336;
+}
+.btn-primary {
+  background-color: #191b2b;
 }

@@ -3,5 +3,11 @@
   <p class="product-title">{{ product.name }}</p>
   <p class="price">$220</p>
   <p class="description">{{ product.description }}</p>
-  <button class="add-to-cart-button" type="button">Add to Cart</button>
+  <button
+    class="add-to-cart-button btn-primary"
+    type="button"
+    (click)="addToCart(product)"
+  >
+    Add to Cart
+  </button>
 </div>

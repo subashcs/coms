@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { CartItem } from '../models/cart/cart.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class CartService {
     let cartItems = JSON.parse(localStorage.getItem("cart"));
     return cartItems
   }
-  setCartItems(cartItem){
+  setCartItems(cartItem:CartItem){
     let cartItems = JSON.parse(localStorage.getItem("cart"))||[];
     cartItems.push(cartItem);
     let cartItemsString = JSON.stringify(cartItems);
@@ -18,11 +19,14 @@ export class CartService {
     return cartItems;
     
   }
-  removeCartItem(cartItemId){
+  removeCartItem(cartItemId:string){
+    console.log("removing",cartItemId);
     let cartItems = JSON.parse(localStorage.getItem("cart"))||[];
-    cartItems = cartItems.filter(item=>item.id===cartItemId);
+    
+    cartItems = cartItems.filter(item=>item.id!==cartItemId);
     let cartItemsString = JSON.stringify(cartItems);
     localStorage.setItem("cart",cartItemsString);
+    console.log(cartItems);
     return cartItems;
   }
 

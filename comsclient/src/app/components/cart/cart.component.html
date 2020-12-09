@@ -1,4 +1,22 @@
-<p>cart works!</p>
-<ul>
-  <app-cart-item *ngFor="let item of cart" [item]="item"></app-cart-item>
-</ul>
+<div class="container">
+  <h3></h3>
+  <ul>
+    <app-cart-item
+      *ngFor="let item of cart"
+      [item]="item"
+      (removeItem)="removeItem($event)"
+    >
+    </app-cart-item>
+  </ul>
+  <table>
+    <tr>
+      <th>Total Price:</th>
+      <td>$ {{ totalPrice }}</td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <button class="btn-secondary">Checkout</button>
+      </td>
+    </tr>
+  </table>
+</div>

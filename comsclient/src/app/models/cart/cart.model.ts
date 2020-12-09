@@ -5,4 +5,6 @@ export class CartItem {
     price:number;
     description:string;
     quantity:number;
+    availableQuantity:number;
+    unit:string;
 }

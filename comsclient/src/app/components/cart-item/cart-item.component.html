@@ -1,8 +1,12 @@
 <li class="card">
   <img src="{{ item.imageUrl }}" />
   <div>
-    <div class="description">{{ item.name }}</div>
-    <div class="price">{{ item.price }}</div>
+    <div class="title">{{ item.name }}</div>
+    <div class="description">{{ item.description }}</div>
+    <div class="price">${{ item.price }}</div>
     <div class="quantity">Quantity:{{ item.quantity }}</div>
+    <button type="button " class="btn-primary" (click)="removeCartItem(item)">
+      Remove from cart
+    </button>
   </div>
 </li>
