@@ -42,9 +42,8 @@ export class LoginComponent implements OnInit {
 
 
   login(){
-   let {email,password} = this.loginForm.value;
     if( this.loginForm.invalid) return;
-   this.authService.login(email,password).subscribe((res)=>console.log(res));
+   this.loading=true;
    this.authService.login(this.f.email.value, this.f.password.value)
    .pipe(first())
    .subscribe(
@@ -52,7 +51,7 @@ export class LoginComponent implements OnInit {
            this.router.navigate([this.returnUrl]);
        },
        error => {
-        this.alertService.error(error);
+        this.alertService.error(error.message);
            this.loading = false;
        });
   }

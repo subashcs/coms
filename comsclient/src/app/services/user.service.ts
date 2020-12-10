@@ -10,14 +10,12 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
     getAll() {
-        return this.http.get<User[]>(`${this.userUrl}/users`);
+        return this.http.get<User[]>(`${this.userUrl}`);
     }
 
-    register(user: User) {
-        return this.http.post(`${this.userUrl}/users/register`, user);
-    }
+   
 
     delete(id: number) {
-        return this.http.delete(`${this.userUrl}/users/${id}`);
+        return this.http.delete(`${this.userUrl}/${id}`);
     }
 }

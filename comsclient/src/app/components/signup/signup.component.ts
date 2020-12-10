@@ -13,9 +13,9 @@ import { AlertService } from 'src/app/services/alert.service';
 
 export class SignupComponent implements OnInit {
   signupForm: FormGroup;
-  isLoggedIn = false;
   returnUrl: string;
   loading:boolean;
+
   constructor(
     private authService:AuthService,
     private alertService:AlertService, private fb:FormBuilder,
@@ -23,17 +23,18 @@ export class SignupComponent implements OnInit {
     private route:ActivatedRoute
     ) { 
     if (this.authService.currentUserValue) {
-      this.isLoggedIn=true;
       this.router.navigate(['/']);
   }
   }
 
   ngOnInit() {
     this.signupForm = this.fb.group({
+      name:['',Validators.required],
+      address:'',
+      avatarUrl:'',
       email:['',Validators.email],
       password:['',Validators.required],
-      
-
+      confirmPassword:['',Validators.required]
     })
      // get return url from route parameters or default to '/'
      this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
@@ -43,18 +44,22 @@ export class SignupComponent implements OnInit {
    get f() { return this.signupForm.controls; }
 
 
-  login(){
-   let {email,password} = this.signupForm.value;
-    if( this.signupForm.invalid) return;
-   this.authService.login(email,password).subscribe((res)=>console.log(res));
-   this.authService.login(this.f.email.value, this.f.password.value)
+  onSubmit(){
+   let {name,email,address,avatarUrl,password,confirmPassword} = this.signupForm.value;
+
+    if( this.signupForm.invalid || password!==confirmPassword) return;
+
+    this.loading=true;
+
+    this.authService.register({name,email,address,avatarUrl,password})
    .pipe(first())
    .subscribe(
        data => {
-           this.router.navigate([this.returnUrl]);
+        this.alertService.success('Registration successful', true);
+        this.router.navigate(['/login']);
        },
        error => {
-        this.alertService.error(error);
+        this.alertService.error(error.error.message);
            this.loading = false;
        });
   }

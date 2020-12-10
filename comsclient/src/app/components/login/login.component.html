@@ -27,7 +27,9 @@
         required
       />
 
-      <button type="submit" class="btn-primary">Login</button>
+      <button [disabled]="loading" type="submit" class="btn-primary">
+        Login
+      </button>
       <label>
         <input type="checkbox" checked="checked" name="remember" /> Remember me
       </label>
