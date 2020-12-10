@@ -15,7 +15,7 @@
   <a *ngIf="isLoggedIn" href="order">My Orders</a>
   <a *ngIf="isLoggedIn" href="#" (click)="logout()">LogOut</a>
 
-  <div *ngIf="isLoggedIn; else notLoggedIn" class="icon-with-text text-down">
+  <div *ngIf="isLoggedIn; else notLoggedIn" class="icon-with-text">
     <a class="icon">
       <img
         src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
