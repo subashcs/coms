@@ -13,6 +13,9 @@ const userSchema = mongoose.Schema(
     address: {
       type: String,
     },
+    avatarUrl: {
+      type: String,
+    },
     email: {
       type: String,
       required: true,

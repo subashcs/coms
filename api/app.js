@@ -8,6 +8,7 @@ const routes = require("./routes");
 const { errorConverter, errorHandler } = require("./middlewares/error");
 
 app.use(cors());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("combined"));
 
