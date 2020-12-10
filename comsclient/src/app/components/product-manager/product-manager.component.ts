@@ -17,6 +17,9 @@ export class ProductManagerComponent implements OnInit {
   ngOnInit() {
     this.loadProducts();
   }
+  reloadProducts(){
+    this.loadProducts();
+  }
   loadProducts(){
     this.productService.getProducts().subscribe(products=>{
       this.products = products
@@ -37,6 +40,13 @@ export class ProductManagerComponent implements OnInit {
       availableQuantity:0,
       unit:''
     }
+  }
+  deleteProduct(product:Product){
+   if( !window.confirm("Are you sure, You want to delete this product?")) return;
+    if(!product._id) return;
+    this.productService.deleteProduct(product._id).subscribe(product=>{
+      this.loadProducts();
+    })
   }
 
 }

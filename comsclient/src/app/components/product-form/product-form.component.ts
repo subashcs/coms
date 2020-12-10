@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import {FormBuilder,FormGroup} from '@angular/forms';
 import { first } from 'rxjs/operators';
 import { Product } from 'src/app/models/product/product.model';
@@ -15,6 +15,7 @@ export class ProductFormComponent implements OnInit {
   productForm: FormGroup;
   @Input() currentProduct:Product;
   @Input() isEdit:boolean;
+  @Output() reloadProducts:EventEmitter<Product>=new EventEmitter();
 
   constructor(private fb:FormBuilder,private productService:ProductService,private alertService:AlertService) { }
 
@@ -52,6 +53,16 @@ export class ProductFormComponent implements OnInit {
       unit:product.unit
     })
   }
+  resetData(){
+    this.productForm.patchValue({
+      name:'',
+      imageUrl:'',
+      price:0,
+      description:'',
+      availableQuantity:'',
+      unit:''
+    })
+  }
 
   onSubmit(){
     if(this.productForm.valid){
@@ -63,6 +74,14 @@ export class ProductFormComponent implements OnInit {
         /**
          * Update
          */
+        this.productService.updateProduct({_id:this.currentProduct._id,name,imageUrl,price,description,availableQuantity,unit}).pipe(first()).subscribe(
+          res=>{
+            this.reloadProducts.emit();
+            this.resetData();
+            this.alertService.success("Registration Successful");
+          },error=>{
+            this.alertService.error("Error Updating Product");
+          })
         
       }
       else{
@@ -71,6 +90,8 @@ export class ProductFormComponent implements OnInit {
          */
         this.productService.createProduct({name,imageUrl,price,description,availableQuantity,unit}).pipe(first()).subscribe(
         res=>{
+          this.reloadProducts.emit();
+          this.resetData();
           this.alertService.success("Registration Successful");
         },error=>{
           this.alertService.error("Error adding Product");

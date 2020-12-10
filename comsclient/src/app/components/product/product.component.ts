@@ -21,5 +21,8 @@ export class ProductComponent implements OnInit {
     let cartItem:CartItem = {...product,quantity:3};
     this.cartService.setCartItems(cartItem);
   }
+  deleteProduct(product:Product){
+
+  }
 
 }

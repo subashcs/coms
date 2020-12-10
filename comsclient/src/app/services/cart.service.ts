@@ -21,7 +21,7 @@ export class CartService {
     let cartItems = JSON.parse(localStorage.getItem("cart"))||[];
     let isItemExist = false;
     cartItems.forEach(element => {
-      if(element.id===cartItem.id){
+      if(element._id===cartItem._id){
         isItemExist = true;
       }
     });
@@ -36,7 +36,7 @@ export class CartService {
     console.log("removing",cartItemId);
     let cartItems = JSON.parse(localStorage.getItem("cart"))||[];
     
-    cartItems = cartItems.filter(item=>item.id!==cartItemId);
+    cartItems = cartItems.filter(item=>item._id!==cartItemId);
     let cartItemsString = JSON.stringify(cartItems);
     localStorage.setItem("cart",cartItemsString);
     

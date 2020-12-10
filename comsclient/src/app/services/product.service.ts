@@ -47,9 +47,9 @@ export class ProductService {
   getProducts():Observable<Product[]>{
     return this.http.get<Product[]>(`${this.productURL}${this.productLimit}${this.productPage}`)
   }
-  updateProduct(product:Product):Observable<any>{
-    let url = `${this.productURL}/${product.id}`
-    return this.http.put<Product>(url,product);
+  updateProduct(product:Product):Observable<Product[]>{
+    let url = `${this.productURL}/${product._id}`
+    return this.http.patch<Product[]>(url,product);
   }
   deleteProduct(productId:string):Observable<any>{
     let url = `${this.productURL}/${productId}`
@@ -58,7 +58,6 @@ export class ProductService {
   createProduct(product:Product):Observable<Product>{
     let url = `${this.productURL}`;
     console.log("create " ,url);
-
     return this.http.post<Product>(url,product);
   }
 }

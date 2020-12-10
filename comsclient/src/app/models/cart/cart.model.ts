@@ -1,5 +1,6 @@
 export class CartItem {
-    id:string;
+    
+    _id?:string;
     name:string;
     imageUrl:string;
     price:number;

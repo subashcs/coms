@@ -16,12 +16,20 @@
     <tr *ngFor="let product of products; let i = index" [attr.data-index]="i">
       <td>{{ i + 1 }}</td>
       <td>{{ product.name }}</td>
-      <td>{{ product.imageUrl }}</td>
-      <td>{{ product.description }}</td>
-      <td>{{ product.price }}</td>
-      <td>{{ product.availableQuantity }}</td>
       <td>
-        <span><i class="fa fa-trash"></i></span
+        <p>{{ product.imageUrl }}</p>
+      </td>
+      <td>
+        <p>{{ product.description }}</p>
+      </td>
+      <td>
+        <p>{{ product.price }}</p>
+      </td>
+      <td>
+        <p>{{ product.availableQuantity }}</p>
+      </td>
+      <td>
+        <span (click)="deleteProduct(product)"><i class="fa fa-trash"></i></span
         ><span (click)="editProduct(product)"
           ><i class="fa fa-pencil"></i
         ></span>
@@ -40,4 +48,5 @@
 <product-form
   [currentProduct]="currentProduct"
   [isEdit]="isEdit"
+  (reloadProducts)="reloadProducts($event)"
 ></product-form>
