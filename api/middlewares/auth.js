@@ -16,7 +16,6 @@ const verifyCallback = (req, requiredRights) => {
     const hasRequiredRights = requiredRights.every((requiredRight) =>
       userRights.includes(requiredRight)
     );
-    console.log(hasRequiredRights, user.role);
     if (!hasRequiredRights && req.params.userId !== user._id) {
       //this will make sure any user with like: no manageUsers right can manage own credentials
       //speciallly the second part of the logic after &&
@@ -46,12 +45,15 @@ const auth = (...requiredRights) => async (req, res, next) => {
   let decoded;
   try {
     decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+    if (!decoded) throw new ApiError(httpStatus.UNAUTHORIZED, "Invalid Token");
+    let currentUser = await User.findById(decoded.sub);
+    req.user = currentUser;
+    verifyCallback(req, requiredRights);
   } catch (err) {
     next(err);
   }
-  let currentUser = await User.findById(decoded.sub);
-  req.user = currentUser;
-  next(verifyCallback(req, requiredRights));
+
+  next();
 };
 
 module.exports = auth;

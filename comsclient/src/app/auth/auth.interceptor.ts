@@ -9,9 +9,11 @@ import { AuthService } from '../services/auth.service';
 export class AuthInterceptor implements HttpInterceptor {
     
     constructor(private authService:AuthService) {
+
     }
     
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    this.authService.isTokenExpired();
 
     req = req.clone({
       setHeaders: {

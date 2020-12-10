@@ -18,6 +18,8 @@ export class AuthService {
   constructor(private http:HttpClient) { 
     this.currentUserSubject = new BehaviorSubject<UserWithToken>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
+    this.isTokenExpired();
+
   }
   public get currentUserValue(): UserWithToken {
     return this.currentUserSubject.value;
@@ -54,5 +56,23 @@ export class AuthService {
     let currentUserTokens = this.currentUserValue.tokens;
     return currentUserTokens.access.token; 
   }
+   hasTokenExpired(token: string) {
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return (Math.floor((new Date).getTime() / 1000)) >= expiry;
+  }
+   isTokenExpired(){
+    if(!this.currentUserValue){return ;}
+    let currentUserTokens = this.currentUserValue.tokens;
+    let token= currentUserTokens.access.token; 
+    if( this.hasTokenExpired(token)){
+      this.clearUserCredentials();
+    }
+  }
+  clearUserCredentials(){
+    localStorage.removeItem('currentUser');
+    this.currentUserSubject.next(null);
+  }
+
+
 
 }
