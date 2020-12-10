@@ -3,7 +3,7 @@
 <table border="2" class="product-table">
   <thead>
     <tr>
-      <th>id</th>
+      <th>SN</th>
       <th>name</th>
       <th>image Url</th>
       <th>description</th>
@@ -13,8 +13,8 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products">
-      <td>{{ product.id }}</td>
+    <tr *ngFor="let product of products; let i = index" [attr.data-index]="i">
+      <td>{{ i + 1 }}</td>
       <td>{{ product.name }}</td>
       <td>{{ product.imageUrl }}</td>
       <td>{{ product.description }}</td>

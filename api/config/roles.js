@@ -3,6 +3,7 @@ const rolesRights = {
   customer: ["getUsers", "getProducts"],
   superadmin: [
     "getUsers",
+    "getProducts",
     "getOrders",
     "getOrdersByCustomer",
     "manageUsers",

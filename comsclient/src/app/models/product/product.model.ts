@@ -1,5 +1,6 @@
 export class Product {
-    id:string;
+    _id?:string;
+    id?:string;
     name:string;
     imageUrl:string;
     price:number;

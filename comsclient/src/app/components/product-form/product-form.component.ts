@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {FormBuilder,FormGroup} from '@angular/forms';
+import { first } from 'rxjs/operators';
 import { Product } from 'src/app/models/product/product.model';
+import { AlertService } from 'src/app/services/alert.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'product-form',
@@ -13,7 +16,7 @@ export class ProductFormComponent implements OnInit {
   @Input() currentProduct:Product;
   @Input() isEdit:boolean;
 
-  constructor(private fb:FormBuilder) { }
+  constructor(private fb:FormBuilder,private productService:ProductService,private alertService:AlertService) { }
 
   ngOnInit() {
     this.productForm = this.fb.group({
@@ -48,6 +51,32 @@ export class ProductFormComponent implements OnInit {
       availableQuantity:product.availableQuantity,
       unit:product.unit
     })
+  }
+
+  onSubmit(){
+    if(this.productForm.valid){
+      let {name,imageUrl,price,description,availableQuantity,unit} = this.productForm.value;
+      /****
+       * Conditon to check whether to update or create
+       */
+      if(this.isEdit){
+        /**
+         * Update
+         */
+        
+      }
+      else{
+        /**
+         * Create
+         */
+        this.productService.createProduct({name,imageUrl,price,description,availableQuantity,unit}).pipe(first()).subscribe(
+        res=>{
+          this.alertService.success("Registration Successful");
+        },error=>{
+          this.alertService.error("Error adding Product");
+        })
+      }
+    }
   }
 
 }

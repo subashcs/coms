@@ -14,7 +14,7 @@
     Cart<sup>{{ itemsInCart }}</sup>
   </a>
   <a href="admin/products">ManageProducts</a>
-  <a *ngIf="isLoggedIn" href="order">My Orders</a>
+  <a *ngIf="isLoggedIn" href="order">MyOrders</a>
   <a *ngIf="isLoggedIn" href="#" (click)="logout()">LogOut</a>
 
   <div *ngIf="isLoggedIn; else notLoggedIn" class="icon-with-text">

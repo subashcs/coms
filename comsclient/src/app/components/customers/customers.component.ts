@@ -16,8 +16,8 @@ export class CustomersComponent implements OnInit {
   }
   loadCustomers(){
     this.userService.getAll().subscribe(customers=>{
-      console.log(customers);
-      this.customers = customers})
+      this.customers = customers
+    })
   }
 
 }

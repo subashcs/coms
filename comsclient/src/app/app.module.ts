@@ -22,6 +22,7 @@ import { CustomersComponent } from './components/customers/customers.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { AlertComponent } from './components/alert/alert.component';
 import { AuthService } from './services/auth.service';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthService } from './services/auth.service';
     ProfileComponent,
     CustomersComponent,
     ProductFormComponent,
-    AlertComponent
+    AlertComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

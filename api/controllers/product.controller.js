@@ -6,14 +6,14 @@ const catchError = require("../utils/catchError");
 
 const createProduct = catchError(async (req, res) => {
   const product = await productService.createProduct(req.body);
-  res.status(httpStatus.CREATED).send(product);
+  return res.status(httpStatus.CREATED).send(product);
 });
 
 const getProducts = catchError(async (req, res) => {
   const filter = pick(req.query, ["name", "role"]);
   const options = pick(req.query, ["sortBy", "limit", "page"]);
   const result = await productService.queryProducts(filter, options);
-  res.send(result);
+  return res.send(result);
 });
 
 const getProduct = catchError(async (req, res) => {
@@ -21,7 +21,7 @@ const getProduct = catchError(async (req, res) => {
   if (!product) {
     throw new ApiError(httpStatus.NOT_FOUND, "Product not found");
   }
-  res.send(product);
+  return res.send(product);
 });
 
 const updateProduct = catchError(async (req, res) => {
@@ -29,12 +29,12 @@ const updateProduct = catchError(async (req, res) => {
     req.params.productId,
     req.body
   );
-  res.send(product);
+  return res.send(product);
 });
 
 const deleteProduct = catchError(async (req, res) => {
   await productService.deleteProductById(req.params.productId);
-  res.status(httpStatus.NO_CONTENT).send();
+  return res.status(httpStatus.NO_CONTENT).send();
 });
 
 module.exports = {

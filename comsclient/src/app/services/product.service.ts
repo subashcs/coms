@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProductService {
-  productURL :'http://localhost:5000/v1/products';
-  productLimit:'?limit=5'
-  productPage:'&page=1'
+  productURL ='http://localhost:5000/v1/products';
+  productLimit='?limit=5';
+  productPage='&page=1';
   products=  [
     {
       id:"2131231323",
@@ -39,7 +39,7 @@ export class ProductService {
       availableQuantity:300,
       unit:"units"
     }
-  ]
+  ];
   constructor(private http:HttpClient) {
     
    }
@@ -54,5 +54,11 @@ export class ProductService {
   deleteProduct(productId:string):Observable<any>{
     let url = `${this.productURL}/${productId}`
     return this.http.delete(url);
+  }
+  createProduct(product:Product):Observable<Product>{
+    let url = `${this.productURL}`;
+    console.log("create " ,url);
+
+    return this.http.post<Product>(url,product);
   }
 }

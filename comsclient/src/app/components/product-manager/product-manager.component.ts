@@ -15,8 +15,13 @@ export class ProductManagerComponent implements OnInit {
   constructor(private productService:ProductService) { }
 
   ngOnInit() {
-    this.products = this.productService.products;
+    this.loadProducts();
   }
+  loadProducts(){
+    this.productService.getProducts().subscribe(products=>{
+      this.products = products
+    });
+  }  
   editProduct(product:Product){
     this.currentProduct = product;
     this.isEdit= true;
