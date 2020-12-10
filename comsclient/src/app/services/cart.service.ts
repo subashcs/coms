@@ -13,7 +13,13 @@ export class CartService {
   }
   setCartItems(cartItem:CartItem){
     let cartItems = JSON.parse(localStorage.getItem("cart"))||[];
-    cartItems.push(cartItem);
+    let isItemExist = false;
+    cartItems.forEach(element => {
+      if(element.id===cartItem.id){
+        isItemExist = true;
+      }
+    });
+    if(!isItemExist)cartItems.push(cartItem);
     let cartItemsString = JSON.stringify(cartItems);
     localStorage.setItem("cart",cartItemsString);
     return cartItems;

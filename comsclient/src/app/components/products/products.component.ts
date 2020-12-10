@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/product/product.model';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -14,5 +14,6 @@ export class ProductsComponent implements OnInit {
   ngOnInit() {
     this.products= this.productService.products;
   }
+  
 
 }

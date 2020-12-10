@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {FormBuilder,FormGroup} from '@angular/forms';
-import { Product } from 'src/app/models/product.model';
+import { Product } from 'src/app/models/product/product.model';
 
 @Component({
   selector: 'product-form',

@@ -18,6 +18,7 @@ import { ProductManagerComponent } from './components/product-manager/product-ma
 import { ProfileComponent } from './components/profile/profile.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ProductFormComponent } from './components/product-form/product-form.com
     ProductManagerComponent,
     ProfileComponent,
     CustomersComponent,
-    ProductFormComponent
+    ProductFormComponent,
+    AlertComponent
   ],
   imports: [
     BrowserModule,
