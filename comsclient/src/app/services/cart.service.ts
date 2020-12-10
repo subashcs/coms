@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { CartItem } from '../models/cart/cart.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private cartSubject:BehaviorSubject<CartItem[]>;
+  public cartItems: Observable<CartItem[]>;
 
-  constructor() { }
+  constructor() { 
+  this.cartSubject = new BehaviorSubject<CartItem[]>(JSON.parse(localStorage.getItem('cart')));
+  this.cartItems =this.cartSubject.asObservable();
+  }
   getCartItems(){
     let cartItems = JSON.parse(localStorage.getItem("cart"));
     return cartItems
@@ -22,6 +28,7 @@ export class CartService {
     if(!isItemExist)cartItems.push(cartItem);
     let cartItemsString = JSON.stringify(cartItems);
     localStorage.setItem("cart",cartItemsString);
+    this.cartSubject.next(cartItems);
     return cartItems;
     
   }
@@ -32,7 +39,9 @@ export class CartService {
     cartItems = cartItems.filter(item=>item.id!==cartItemId);
     let cartItemsString = JSON.stringify(cartItems);
     localStorage.setItem("cart",cartItemsString);
-    console.log(cartItems);
+    
+    this.cartSubject.next(cartItems);
+
     return cartItems;
   }
 
