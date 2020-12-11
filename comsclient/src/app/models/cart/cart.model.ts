@@ -1,11 +1,7 @@
+import { Product } from '../product/product.model';
+
 export class CartItem {
     
-    _id?:string;
-    name:string;
-    imageUrl:string;
-    price:number;
-    description:string;
+    product:Product;
     quantity:number;
-    availableQuantity:number;
-    unit:string;
 }

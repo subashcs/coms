@@ -18,11 +18,9 @@ export class ProductComponent implements OnInit {
   
   addToCart(product:Product){
     console.log("product to cart",product);
-    let cartItem:CartItem = {...product,quantity:3};
+    let cartItem:CartItem = {product,quantity:3};
     this.cartService.setCartItems(cartItem);
   }
-  deleteProduct(product:Product){
-
-  }
+  
 
 }

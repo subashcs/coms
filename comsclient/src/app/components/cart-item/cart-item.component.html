@@ -1,9 +1,9 @@
 <li class="card">
-  <img src="{{ item.imageUrl }}" />
-  <div>
-    <div class="title">{{ item.name }}</div>
-    <div class="description">{{ item.description }}</div>
-    <div class="price">${{ item.price }}</div>
+  <img src="{{ item.product.imageUrl }}" />
+  <div class="card-right">
+    <div class="title">{{ item.product.name }}</div>
+    <div class="description">{{ item.product.description }}</div>
+    <div class="price">${{ item.product.price }}</div>
     <div class="quantity">Quantity:{{ item.quantity }}</div>
     <button type="button " class="btn-primary" (click)="removeCartItem(item)">
       Remove from cart

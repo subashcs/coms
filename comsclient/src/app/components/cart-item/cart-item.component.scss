@@ -3,22 +3,50 @@
   align-items: center;
   border: 1px solid #000;
   border-radius: 5px;
-  padding: 5px 5px 5px 0;
-  margin: 5px;
+  padding: 0px 5px 0px 0;
+  margin: 10px auto;
+  height: 200px;
+  max-width: 550px;
   font-family: "Courier New", Courier, monospace;
+  .card-right {
+    padding-left: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
   img {
-    height: 150px;
+    height: 200px;
+    max-width: 200px;
+    margin: 0;
+    overflow: hidden;
+    object-fit: cover;
   }
   .title {
     font-weight: 800;
   }
   .description {
     justify-content: center;
+    max-height: 40px;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .price {
     color: #db3c14;
     font-weight: 600;
   }
   .quantity {
+  }
+}
+@media screen and (max-width: 450px) {
+  .card {
+    flex-direction: column;
+    height: auto;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+    img {
+      width: initial;
+      max-width: 100%;
+    }
   }
 }

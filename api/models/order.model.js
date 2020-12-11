@@ -4,21 +4,33 @@ const bcrypt = require("bcryptjs");
 
 const orderSchema = mongoose.Schema(
   {
-    customer: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
-    products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product" }],
+    customer: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+    products: [
+      {
+        product: { type: mongoose.Schema.Types.ObjectId, ref: "Product" },
+        quantity: Number,
+      },
+    ],
     shippingAddress: {
       type: String,
     },
-    markedPrice: {
+    paymentMethod: {
       type: String,
+    },
+    markedPrice: {
+      type: Number,
       required: true,
     },
     discountPercentage: {
-      type: String,
+      type: Number,
       required: true,
     },
     sellingPrice: {
-      type: String,
+      type: Number,
     },
   },
   {

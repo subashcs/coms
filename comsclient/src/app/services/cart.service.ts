@@ -14,14 +14,14 @@ export class CartService {
   this.cartItems =this.cartSubject.asObservable();
   }
   getCartItems(){
-    let cartItems = JSON.parse(localStorage.getItem("cart"));
+    let cartItems:CartItem[] = JSON.parse(localStorage.getItem("cart"));
     return cartItems
   }
   setCartItems(cartItem:CartItem){
-    let cartItems = JSON.parse(localStorage.getItem("cart"))||[];
+    let cartItems:CartItem[] = JSON.parse(localStorage.getItem("cart"))||[];
     let isItemExist = false;
     cartItems.forEach(element => {
-      if(element._id===cartItem._id){
+      if(element.product._id===cartItem.product._id){
         isItemExist = true;
       }
     });
@@ -33,10 +33,10 @@ export class CartService {
     
   }
   removeCartItem(cartItemId:string){
-    console.log("removing",cartItemId);
-    let cartItems = JSON.parse(localStorage.getItem("cart"))||[];
+    let cartItems:CartItem[] = JSON.parse(localStorage.getItem("cart"))||[];
     
-    cartItems = cartItems.filter(item=>item._id!==cartItemId);
+    cartItems = cartItems.filter(item=>item.product._id!==cartItemId);
+
     let cartItemsString = JSON.stringify(cartItems);
     localStorage.setItem("cart",cartItemsString);
     

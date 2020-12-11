@@ -9,12 +9,12 @@
   </div>
 
   <a href="#">Home</a>
-  <a href="customers">Customers</a>
+  <a *ngIf="isLoggedIn" href="customers">Customers</a>
   <a class="cart-button" href="cart">
     Cart<sup>{{ itemsInCart }}</sup>
   </a>
-  <a href="admin/products">ManageProducts</a>
-  <a *ngIf="isLoggedIn" href="order">MyOrders</a>
+  <a *ngIf="isLoggedIn" href="admin/products">ManageProducts</a>
+  <a *ngIf="isLoggedIn" href="orders">MyOrders</a>
   <a *ngIf="isLoggedIn" href="#" (click)="logout()">LogOut</a>
 
   <div *ngIf="isLoggedIn; else notLoggedIn" class="icon-with-text">

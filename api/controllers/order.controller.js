@@ -5,13 +5,24 @@ const { orderService } = require("../services");
 const catchError = require("../utils/catchError");
 
 const createOrder = catchError(async (req, res) => {
-  const order = await orderService.createOrder(req.body);
+  let data = req.body;
+  try {
+    if (!req.user) {
+      throw new ApiError(httpStatus.UNAUTHORIZED, "User not set");
+    }
+  } catch (err) {
+    next(err);
+  }
+  data.customer = req.user._id;
+  const order = await orderService.createOrder(data);
   res.status(httpStatus.CREATED).send(order);
 });
 
 const getOrders = catchError(async (req, res) => {
   const filter = pick(req.query, ["name", "role"]);
   const options = pick(req.query, ["sortBy", "limit", "page"]);
+  options.limit = options.limit ? options.limit : 5;
+  options.page = options.page ? options.page : 1;
   const result = await orderService.queryOrders(filter, options);
   res.send(result);
 });
@@ -19,6 +30,10 @@ const getOrders = catchError(async (req, res) => {
 const getOrdersByCustomer = catchError(async (req, res) => {
   const filter = pick(req.query, ["name", "role"]);
   const options = pick(req.query, ["sortBy", "limit", "page"]);
+
+  options.limit = options.limit ? options.limit : 5;
+  options.page = options.page ? options.page : 1;
+  filter.customer = req.params.userId;
   const result = await orderService.queryOrders(filter, options);
   res.send(result);
 });
