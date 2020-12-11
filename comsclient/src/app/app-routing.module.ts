@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './auth/auth.guard';
 import { CartComponent } from './components/cart/cart.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -18,7 +19,7 @@ const routes: Routes = [
   {path:'customers',component:CustomersComponent},
   {path:'profile',component:ProfileComponent},
 
-  {path:'admin/products',component:ProductManagerComponent},
+  {path:'admin/products',component:ProductManagerComponent,canActivate:[AuthGuard]},
   {path:'',component:DashboardComponent}
 ];
 

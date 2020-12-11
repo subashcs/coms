@@ -12,11 +12,11 @@ export class ProductsComponent implements OnInit {
   constructor(private productService:ProductService) { }
 
   ngOnInit() {
-   this.loadProducts();
+   this.loadProducts(1);
   }
-  loadProducts(){
-    this.productService.getProducts().subscribe(products=>{
-      this.products = products
+  loadProducts(page:number){
+    this.productService.getProducts(page).subscribe(res=>{
+      this.products = res.data
     });
   } 
   
