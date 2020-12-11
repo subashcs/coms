@@ -18,3 +18,8 @@
     </div>
   </li>
 </ul>
+<paginate
+  [totalCount]="totalCount"
+  [perPageCount]="limit"
+  (onChangePage)="onChangePage($event)"
+></paginate>

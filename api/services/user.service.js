@@ -26,12 +26,12 @@ const createUser = async (userBody) => {
  */
 const queryUsers = async (filter, options) => {
   const skipDocs = parseInt(options?.page - 1) * parseInt(options?.limit);
-  console.log("skip", skipDocs);
   const users = await User.find(filter)
     .sort(options?.sortBy)
     .skip(skipDocs)
     .limit(parseInt(options?.limit));
-  return users;
+  let count = await User.count(filter);
+  return { data: users, totalCount: count, limit: options.limit };
 };
 
 /**

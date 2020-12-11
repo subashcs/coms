@@ -1,0 +1,28 @@
+hr {
+  height: 1px;
+  background-color: rgb(131, 114, 114);
+  border: 0;
+  box-shadow: 1px 1px 3px gray;
+}
+.page-list {
+  display: flex;
+  margin: 10px 0px;
+  flex-direction: row;
+  justify-content: center;
+
+  li {
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 1px 1px 3px gray;
+
+    border-right: 1px solid rgb(94, 86, 94);
+    background-color: rgba(228, 227, 233, 0.322);
+    &:last-child {
+      border-right: 0px;
+    }
+  }
+  .next,
+  .prev {
+    font-weight: 800;
+  }
+}

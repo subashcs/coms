@@ -13,6 +13,9 @@ const getUsers = catchError(async (req, res) => {
   const filter = pick(req.query, ["name", "role"]);
   // limit : or pageSize same
   const options = pick(req.query, ["sortBy", "limit", "page"]);
+  options.limit = options.limit ? options.limit : 5;
+  options.page = options.page ? options.page : 1;
+
   const result = await userService.queryUsers(filter, options);
   res.send(result);
 });

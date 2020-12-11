@@ -8,16 +8,24 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./customers.component.scss']
 })
 export class CustomersComponent implements OnInit {
-  customers:User[];
+  customers:Array<User>;
+  totalCount:number;
+  limit:number;
   constructor(private userService:UserService) { }
 
   ngOnInit() {
-    this.loadCustomers()
+    this.loadCustomers(1)
   }
-  loadCustomers(){
-    this.userService.getAll().subscribe(customers=>{
-      this.customers = customers
+  loadCustomers(page:number,limit?:number){
+    console.log("reload customers",page,limit);
+    this.userService.getAll(page,limit).subscribe(customers=>{
+      this.customers = customers.data;
+      this.totalCount = customers.totalCount;
+      this.limit = customers.limit;
     })
+  }
+  onChangePage(page:number){
+    this.loadCustomers(page);
   }
 
 }

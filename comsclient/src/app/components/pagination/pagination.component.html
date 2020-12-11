@@ -1,1 +1,11 @@
-<p>pagination works!</p>
+<hr />
+<ul *ngIf="totalPages > 1" class="page-list">
+  <li class="prev" (click)="prevPage()"><< Prev</li>
+  <li
+    *ngFor="let page of counter(totalPages); let i = index"
+    (click)="changePage(i + 1)"
+  >
+    {{ i + 1 }}
+  </li>
+  <li class="next" (click)="nextPage()">Next >></li>
+</ul>
