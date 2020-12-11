@@ -18,6 +18,11 @@ const orderSchema = mongoose.Schema(
     shippingAddress: {
       type: String,
     },
+    shippingStatus: {
+      type: String,
+      enum: ["shipped", "not-shipped"],
+      default: "not-shipped",
+    },
     paymentMethod: {
       type: String,
     },

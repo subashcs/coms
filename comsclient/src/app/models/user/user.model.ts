@@ -1,5 +1,5 @@
 export class User {
-    id:string;
+    _id:string;
     name:string;
     address:string;
     avatarImage:string;

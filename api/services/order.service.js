@@ -28,8 +28,8 @@ const queryOrders = async (filter, options) => {
     .sort(options?.sortBy)
     .skip(skipDocs)
     .limit(parseInt(options?.limit))
-    .populated("customer")
-    .populated("products");
+    .populate("customer")
+    .populate("products.product");
   let count = await Order.count(filter);
 
   return { totalCount: count, data: orders, limit: options.limit };

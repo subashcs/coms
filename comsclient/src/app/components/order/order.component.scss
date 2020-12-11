@@ -1,0 +1,25 @@
+.order-box {
+  border: 1px solid #fff;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.order-list {
+  tr {
+    background-color: rgb(241, 239, 239);
+    th {
+      text-transform: uppercase;
+    }
+  }
+  tr td,
+  tr th {
+    text-align: center;
+  }
+  .products span {
+    color: #162391aa;
+    &::after {
+      content: ",";
+    }
+  }
+}

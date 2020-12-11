@@ -23,12 +23,11 @@ export class OrderService {
       let url = `${this.orderUrl}${queryParams}`;
         return this.http.get<OrderQueryReturnType>(url);
   }
-  getAllByCustomer(page:number,limit?:number):Observable<OrderQueryReturnType> {
-    let userId = 1;
+  getAllByCustomer(customerId:string,page:number,limit?:number):Observable<OrderQueryReturnType> {
       let limitQuery = limit?`limit=${limit}`:'';
       let pageQuery = page?`page=${page}`:'';
       let queryParams = limitQuery?`?${limitQuery}&${pageQuery}`:`?${pageQuery}`;
-      let url = `${this.orderUrl}/${userId}/${queryParams}`;
+      let url = `${this.orderUrl}/${customerId}/${queryParams}`;
         return this.http.get<OrderQueryReturnType>(url);
   }
 

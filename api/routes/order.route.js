@@ -8,11 +8,12 @@ router
   .route("/")
   .post(auth("manageOrders"), orderController.createOrder)
   .get(auth("getOrders"), orderController.getOrders);
+
 router
-  .route("/:userId/:orderId")
+  .route("/:userId")
   .get(auth("getOrdersByCustomer"), orderController.getOrdersByCustomer);
 router
-  .route("/:orderId")
+  .route("/:userId/:orderId")
   .get(auth("getOrders"), orderController.getOrder)
   .patch(auth("manageOrders"), orderController.updateOrder)
   .delete(auth("manageOrders"), orderController.deleteOrder);
