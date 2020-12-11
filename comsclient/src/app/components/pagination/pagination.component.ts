@@ -28,9 +28,8 @@ export class PaginationComponent implements OnInit {
     this.changePage(this.currentPage);
   }
   nextPage(){
-    if(this.currentPage>100 ||this.currentPage<1) return;
+    if(this.currentPage>=this.totalPages ||this.currentPage<1) return;
     ++this.currentPage;
-
     this.changePage(this.currentPage);
   }
 
@@ -40,6 +39,5 @@ export class PaginationComponent implements OnInit {
   changePage(page:number){
     this.currentPage = page;
     this.onChangePage.emit(page);
-
   }
 }
