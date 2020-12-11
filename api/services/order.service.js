@@ -30,7 +30,9 @@ const queryOrders = async (filter, options) => {
     .limit(parseInt(options?.limit))
     .populated("customer")
     .populated("products");
-  return orders;
+  let count = await Order.count(filter);
+
+  return { totalCount: count, data: orders, limit: options.limit };
 };
 
 /**

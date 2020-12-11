@@ -12,6 +12,8 @@ const createProduct = catchError(async (req, res) => {
 const getProducts = catchError(async (req, res) => {
   const filter = pick(req.query, ["name", "role"]);
   const options = pick(req.query, ["sortBy", "limit", "page"]);
+  options.limit = options.limit ? options.limit : 5;
+  options.page = options.page ? options.page : 1;
   const result = await productService.queryProducts(filter, options);
   return res.send(result);
 });

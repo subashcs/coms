@@ -11,18 +11,21 @@ export class ProductManagerComponent implements OnInit {
   products:Product[];
   currentProduct:Product;
   isEdit=false;
-
+  totalCount:number;
+  limit:number=2;
+  
   constructor(private productService:ProductService) { }
 
   ngOnInit() {
     this.loadProducts();
   }
-  reloadProducts(){
-    this.loadProducts();
-  }
-  loadProducts(){
-    this.productService.getProducts().subscribe(products=>{
-      this.products = products
+  
+  loadProducts(page?:number){
+     page = page?page:1;
+    this.productService.getProducts(page,this.limit).subscribe(res=>{
+      this.products = res.data
+      this.totalCount=res.totalCount;
+      this.limit = res.limit;
     });
   }  
   editProduct(product:Product){
@@ -47,6 +50,10 @@ export class ProductManagerComponent implements OnInit {
     this.productService.deleteProduct(product._id).subscribe(product=>{
       this.loadProducts();
     })
+  }
+  onChangePage(page:number){
+    this.loadProducts(page);
+
   }
 
 }

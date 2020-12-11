@@ -29,8 +29,9 @@ const queryProducts = async (filter, options) => {
     .sort(options?.sortBy)
     .skip(skipDocs)
     .limit(parseInt(options?.limit));
+  let count = await Product.count(filter);
 
-  return products;
+  return { totalCount: count, data: products, limit: options.limit };
 };
 
 /**

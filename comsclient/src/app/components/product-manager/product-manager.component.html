@@ -35,6 +35,15 @@
         ></span>
       </td>
     </tr>
+    <tr>
+      <td colspan="7">
+        <paginate
+          [perPageCount]="limit"
+          [totalCount]="totalCount"
+          (onChangePage)="onChangePage($event)"
+        ></paginate>
+      </td>
+    </tr>
   </tbody>
 </table>
 
@@ -48,5 +57,5 @@
 <product-form
   [currentProduct]="currentProduct"
   [isEdit]="isEdit"
-  (reloadProducts)="reloadProducts($event)"
+  (reloadProducts)="loadProducts($event)"
 ></product-form>

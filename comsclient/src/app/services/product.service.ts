@@ -3,6 +3,11 @@ import {HttpClient,HttpHeaders} from '@angular/common/http';
 import { Product } from '../models/product/product.model';
 import { Observable } from 'rxjs';
 
+type ProductReturnType = {
+  data:Array<Product>;
+  totalCount:number;
+  limit:number;
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -10,43 +15,19 @@ export class ProductService {
   productURL ='http://localhost:5000/v1/products';
   productLimit='?limit=5';
   productPage='&page=1';
-  products=  [
-    {
-      id:"2131231323",
-      name:"Samsung mobile",
-      imageUrl:"https://images.samsung.com/is/image/samsung/au-galaxy-s20-plus-5g-g986-sm-g986bzpaxsa-frontbpurple-thumb-261021455",
-      price:230,
-      description:"samsung mobile is the most exciting inno keen thing to catch up with",
-      availableQuantity:300,
-      unit:"units"
-    },
-    {
-      id:"213123ad1df323",
-      name:"Apple mobile",
-      imageUrl:"https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone11-red-select-2019?wid=940&hei=1112&fmt=png-alpha&qlt=80&.v=1566956144763",
-      price:230,
-      description:"Apple mobile is the most exciting inno keen thing to catch up with",
-      availableQuantity:300,
-      unit:"units"
-
-    },
-    {
-      id:"213123ad1df323",
-      name:"Xiomi m22",
-      imageUrl:"https://www.gizmochina.com/wp-content/uploads/2019/09/Xiaomi-Redmi-Note-8-1-500x500.jpg",
-      price:230,
-      description:"Xiomi mobile is the most exciting inno keen thing to catch up with",
-      availableQuantity:300,
-      unit:"units"
-    }
-  ];
+ 
   constructor(private http:HttpClient) {
     
-   }
-
-  getProducts():Observable<Product[]>{
-    return this.http.get<Product[]>(`${this.productURL}${this.productLimit}${this.productPage}`)
   }
+
+  getProducts(page:number,limit?:number):Observable<ProductReturnType>{
+    
+    let limitQuery = limit?`limit=${limit}`:'';
+    let pageQuery = page?`page=${page}`:'';
+    let queryParams = limitQuery?`?${limitQuery}&${pageQuery}`:`?${pageQuery}`;
+    return this.http.get<ProductReturnType>(`${this.productURL}${queryParams}`)
+  }
+
   updateProduct(product:Product):Observable<Product[]>{
     let url = `${this.productURL}/${product._id}`
     return this.http.patch<Product[]>(url,product);
@@ -57,7 +38,6 @@ export class ProductService {
   }
   createProduct(product:Product):Observable<Product>{
     let url = `${this.productURL}`;
-    console.log("create " ,url);
     return this.http.post<Product>(url,product);
   }
 }
