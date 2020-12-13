@@ -9,7 +9,8 @@ body {
 }
 
 /* style for all buttons */
-button {
+button,
+.btn {
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -19,7 +20,8 @@ button {
   opacity: 0.9;
 }
 
-button:hover {
+button:hover,
+btn:hover {
   opacity: 1;
 }
 
@@ -35,6 +37,8 @@ button:hover {
 }
 
 /* input fields */
+
+select,
 input[type="text"],
 input[type="number"],
 input[type="email"],
@@ -47,7 +51,10 @@ input[type="password"] {
   border: none;
   background: #f1f1f1;
 }
-
+select {
+  width: max-content;
+}
+select:focus,
 input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="email"]:focus,

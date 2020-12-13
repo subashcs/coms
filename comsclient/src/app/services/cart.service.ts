@@ -8,15 +8,28 @@ import { CartItem } from '../models/cart/cart.model';
 export class CartService {
   private cartSubject:BehaviorSubject<CartItem[]>;
   public cartItems: Observable<CartItem[]>;
-
+  
   constructor() { 
   this.cartSubject = new BehaviorSubject<CartItem[]>(JSON.parse(localStorage.getItem('cart')));
   this.cartItems =this.cartSubject.asObservable();
+
   }
+
   getCartItems(){
     let cartItems:CartItem[] = JSON.parse(localStorage.getItem("cart"));
     return cartItems
   }
+
+  calculateTotalPrice(cartItems:CartItem[]){
+    let totalPrice=0;
+    if(Array.isArray(cartItems)){
+      cartItems.forEach(item=>{
+        totalPrice += item.product.price*item.quantity;
+      })
+    }
+    return totalPrice;
+  }
+
   setCartItems(cartItem:CartItem){
     let cartItems:CartItem[] = JSON.parse(localStorage.getItem("cart"))||[];
     let isItemExist = false;

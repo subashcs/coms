@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AccessGuard } from './auth/access.guard';
 import { AuthGuard } from './auth/auth.guard';
 import { CartComponent } from './components/cart/cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
@@ -15,15 +17,16 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'cart',component:CartComponent},
-  {path:'orders',component:OrderComponent,canActivate:[AuthGuard]},
-  {path:'customers',component:CustomersComponent,canActivate:[AuthGuard]},
+  {path:'orders',component:OrderComponent,canActivate:[AuthGuard,AccessGuard]},
+  {path:'customers',component:CustomersComponent,canActivate:[AuthGuard,AccessGuard]},
   {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
+  {path:'checkout',component:CheckoutComponent},
 
-  {path:'admin/products',component:ProductManagerComponent,canActivate:[AuthGuard]},
+  {path:'admin/products',component:ProductManagerComponent,canActivate:[AuthGuard,AccessGuard]},
   {path:'',component:DashboardComponent}
 ];
 
-@NgModule({
+@NgModule({ 
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

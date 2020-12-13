@@ -25,6 +25,7 @@ import { AuthService } from './services/auth.service';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
     AlertComponent,
     PaginationComponent,
     OrderFormComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,

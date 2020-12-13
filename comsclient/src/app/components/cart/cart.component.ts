@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { first } from 'rxjs/operators';
+import { Router } from '@angular/router';
 import { CartItem} from 'src/app/models/cart/cart.model';
-import { AlertService } from 'src/app/services/alert.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { CartService } from 'src/app/services/cart.service';
-import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'app-cart',
@@ -13,45 +12,38 @@ import { OrderService } from 'src/app/services/order.service';
 export class CartComponent implements OnInit {
   cart:CartItem[];
   totalPrice:number=0;
-  constructor(private cartService:CartService,private orderService:OrderService,private alertService:AlertService) { }
+  isLoggedIn:boolean;
 
-  ngOnInit() {
+  constructor(private cartService:CartService,
+    private authService:AuthService,
+    private router:Router) { }
+
+  ngOnInit(){
+    this.authService.currentUser.subscribe((user:any)=>{
+      if(user){
+        this.isLoggedIn=true;
+        
+      }
+      else{
+        this.isLoggedIn=false
+      }
+    })
     this.cart= this.cartService.getCartItems()
-    this.updateTotal()
+    this.updateTotal();
   }
+
   updateTotal(){
-    let totalPrice=0;
-    if(Array.isArray(this.cart)&& this.cart[0]){
-      this.cart.forEach(item=>{
-        totalPrice += item.product.price*item.quantity;
-      })
-    }
-    this.totalPrice = totalPrice;
+    this.totalPrice = this.cartService.calculateTotalPrice(this.cart);
   }
+
   removeItem(cartItem:CartItem){
     const itemId =  cartItem.product._id;
     this.cart =this.cartService.removeCartItem(itemId);
     this.updateTotal();
   }
  
-  makeOrder(){
-    let order = {
-      shippingAddress:"Makhamalli Galli pokhara",
-      paymentMethod:"cashondelivery",
-      products:this.cart,
-      sellingPrice:this.totalPrice,
-      discountPercentage:0,
-      markedPrice:this.totalPrice,
-      
-    }
-    this.orderService.createOrder(order).pipe(first()).subscribe(
-      res=>{
-        console.log(res);
-        this.alertService.success("Order placed Successfully");
-      },error=>{
-        this.alertService.error("Error adding order");
-      });
-
-  }
+  proceedToCheckout(){
+    this.router.navigate(['/checkout'])
+  } 
 
 }

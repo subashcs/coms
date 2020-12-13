@@ -10,6 +10,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn:boolean;
+  isSuperAdmin:boolean;
   itemsInCart:number;
    constructor(private cartService:CartService ,private authService:AuthService,private router:Router,private route:ActivatedRoute){
     this.cartService.cartItems.subscribe((items)=>{
@@ -18,13 +19,15 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authService.currentUser.subscribe((user:any)=>{
-      if(user){
+    this.authService.currentUser.subscribe((userData:any)=>{
+      if(userData){
         this.isLoggedIn=true;
-        
+        let userRole = userData.user?userData.user.role:"";
+        this.isSuperAdmin= (userRole==="superadmin");
       }
       else{
-        this.isLoggedIn=false
+        this.isLoggedIn=false;
+        this.isSuperAdmin=false;
       }
     })
   

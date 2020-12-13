@@ -8,17 +8,19 @@
     >
     </app-cart-item>
   </ul>
-  <table>
-    <tr>
-      <th>Total Price:</th>
-      <td>$ {{ totalPrice }}</td>
-    </tr>
-    <tr>
-      <td colspan="2">
-        <button type="button" class="btn-secondary" (click)="makeOrder()">
-          Checkout
-        </button>
-      </td>
-    </tr>
-  </table>
+  <p>Total Price:$ {{ totalPrice }}</p>
+
+  <p>
+    <button
+      *ngIf="isLoggedIn"
+      type="button"
+      class="btn-secondary"
+      (click)="proceedToCheckout()"
+    >
+      Proceed To Checkout
+    </button>
+    <a class="login-btn btn btn-secondary" *ngIf="!isLoggedIn" href="login">
+      Login To Checkout
+    </a>
+  </p>
 </div>
