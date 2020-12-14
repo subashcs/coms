@@ -42,8 +42,8 @@ const queryOrders = async (filter, options) => {
  */
 const getOrderById = async (id) => {
   return await (await Order.findById(id))
-    .populated("customer")
-    .populated("products");
+    .populate("customer")
+    .populate("products");
 };
 
 /**
