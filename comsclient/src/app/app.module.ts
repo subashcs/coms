@@ -29,7 +29,7 @@ import { ProductDetailComponent } from './components/product-detail/product-deta
 import { OrderManagerComponent } from './components/order-manager/order-manager.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
-import { EditComponent } from './components/order-manager/edit/edit.component';
+import { EditOrderComponent } from './components/order-manager/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,7 @@ import { EditComponent } from './components/order-manager/edit/edit.component';
     OrderManagerComponent,
     EditUserComponent,
     ResetPasswordComponent,
-    EditComponent
+    EditOrderComponent
   ],
   imports: [
     BrowserModule,

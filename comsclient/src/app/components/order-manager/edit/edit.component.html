@@ -1,1 +1,30 @@
-<p>edit works!</p>
+<form class="order-form">
+  <div class="form-group">
+    <label>Shipping Address</label>
+    <input
+      type="text"
+      name="shippingAddress"
+      placeholder="Enter Shipping Address"
+    />
+  </div>
+
+  <div class="form-group">
+    <h3>Choose Payment Method</h3>
+
+    <select formControlName="paymentMethod" name="paymentMethod">
+      <option value=""></option>
+      <option value="cashondelivery">Cash On Delivery</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <h3>Change Shipping Status</h3>
+
+    <select formControlName="paymentMethod" name="paymentMethod">
+      <option value="not-shipped">Not Shipped</option>
+      <option value="shipped">Shipped</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn-primary">Update</button>
+  </div>
+</form>

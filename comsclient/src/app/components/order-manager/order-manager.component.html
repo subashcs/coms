@@ -7,6 +7,7 @@
       <th>totalPrice</th>
       <th>products</th>
       <th>shipping status</th>
+      <th>Actions</th>
     </tr>
     <tr *ngFor="let order of orders; let i = index">
       <td>{{ i }}</td>
@@ -18,6 +19,15 @@
         }}</span>
       </td>
       <td>{{ order.shippingStatus }}</td>
+      <td>
+        <span (click)="deleteOrder(order)"><i class="fa fa-trash"></i></span
+        ><span (click)="editOrder(order)"><i class="fa fa-pencil"></i></span>
+      </td>
     </tr>
   </table>
 </div>
+<paginate
+  [perPageCount]="limit"
+  [totalCount]="totalCount"
+  (onChangePage)="onChangePage($event)"
+></paginate>

@@ -21,3 +21,8 @@
     </tr>
   </table>
 </div>
+<paginate
+  [perPageCount]="limit"
+  [totalCount]="totalCount"
+  (onChangePage)="onChangePage($event)"
+></paginate>

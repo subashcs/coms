@@ -11,7 +11,7 @@ import { OrderService } from 'src/app/services/order.service';
 export class OrderComponent implements OnInit {
   orders:Order[];
   totalCount:number;
-  limit:number;
+  limit:number=10;
   customerId:string;
   constructor(private orderService:OrderService,private authService:AuthService) { }
 
@@ -23,12 +23,15 @@ export class OrderComponent implements OnInit {
       this.loadOrders(1);
 
   }
-  loadOrders(page:number,limit?:number){
-    this.orderService.getAllByCustomer(this.customerId,page,limit).subscribe(orders=>{
+  loadOrders(page:number){
+    this.orderService.getAllByCustomer(this.customerId,page,this.limit).subscribe(orders=>{
       this.orders = orders.data;
       this.totalCount = orders.totalCount;
       this.limit = orders.limit;
     })
   }
 
+  onChangePage(page:number){
+    this.loadOrders(page);
+  }
 }

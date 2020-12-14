@@ -11,25 +11,33 @@ import { OrderService } from 'src/app/services/order.service';
 export class OrderManagerComponent implements OnInit {
   orders:Order[];
   totalCount:number;
-  limit:number;
+  limit:number=3;
   customerId:string;
   constructor(private orderService:OrderService,private authService:AuthService) { }
 
   ngOnInit() {
       this.authService.currentUser.subscribe((curUser)=>{
-        console.log(curUser);
         this.customerId = curUser.user._id;
       })
       this.loadOrders(1);
 
   }
-  loadOrders(page:number,limit?:number){
-    this.orderService.getAll(page,limit).subscribe(orders=>{
+  loadOrders(page:number){
+    this.orderService.getAll(page,this.limit).subscribe(orders=>{
       this.orders = orders.data;
       this.totalCount = orders.totalCount;
       this.limit = orders.limit;
     })
   }
+  onChangePage(page:number){
+    this.loadOrders(page);
+  }
+  deleteOrder(order:Order){
 
+  }
+
+  editOrder(order:Order){
+    
+  }
 
 }
