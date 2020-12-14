@@ -11,6 +11,7 @@ import { CartService } from 'src/app/services/cart.service';
 export class NavbarComponent implements OnInit {
   isLoggedIn:boolean;
   isSuperAdmin:boolean;
+  avatarUrl : string;
   itemsInCart:number;
    constructor(private cartService:CartService ,private authService:AuthService,private router:Router,private route:ActivatedRoute){
     this.cartService.cartItems.subscribe((items)=>{
@@ -22,8 +23,9 @@ export class NavbarComponent implements OnInit {
     this.authService.currentUser.subscribe((userData:any)=>{
       if(userData){
         this.isLoggedIn=true;
-        let userRole = userData.user?userData.user.role:"";
-        this.isSuperAdmin= (userRole==="superadmin");
+        let user = userData.user?userData.user:"";
+        this.avatarUrl = user.avatarUrl;
+        this.isSuperAdmin= (user.role==="superadmin");
       }
       else{
         this.isLoggedIn=false;

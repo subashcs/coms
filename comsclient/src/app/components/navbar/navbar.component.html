@@ -20,7 +20,10 @@
   <div *ngIf="isLoggedIn; else notLoggedIn" class="icon-with-text">
     <a href="profile" class="icon">
       <img
-        src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+        src="{{
+          avatarUrl ||
+            'https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png'
+        }}"
       />
     </a>
     <span>Profile</span>
