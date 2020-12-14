@@ -5,6 +5,7 @@ const {
   tokenService,
   emailService,
 } = require("../services");
+const ApiError = require("../utils/ApiError");
 const catchError = require("../utils/catchError");
 
 const register = catchError(async (req, res) => {
@@ -16,8 +17,11 @@ const register = catchError(async (req, res) => {
 const login = catchError(async (req, res) => {
   const { email, password } = req.body;
   const user = await authService.loginUserWithEmailAndPassword(email, password);
+
   const tokens = await tokenService.generateAuthTokens(user);
-  res.send({ user, tokens });
+  let userData = { _id: user._id, name: user.name, email: user.email };
+
+  res.send({ user: userData, tokens });
 });
 
 const logout = catchError(async (req, res) => {
@@ -42,6 +46,15 @@ const resetPassword = catchError(async (req, res) => {
   await authService.resetPassword(req.query.token, req.body.password);
   res.status(httpStatus.NO_CONTENT).send();
 });
+const getUserProfile = catchError(async (req, res) => {
+  let email = req.query.email;
+  if (!email) {
+    throw new ApiError(httpStatus.BAD_REQUEST, "email is required param");
+  }
+  const user = await userService.getUserByEmail(email);
+
+  return res.status(httpStatus.OK).send(user);
+});
 
 module.exports = {
   register,
@@ -50,4 +63,5 @@ module.exports = {
   refreshTokens,
   forgotPassword,
   resetPassword,
+  getUserProfile,
 };

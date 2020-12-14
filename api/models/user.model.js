@@ -13,6 +13,9 @@ const userSchema = mongoose.Schema(
     address: {
       type: String,
     },
+    phone: {
+      type: String,
+    },
     avatarUrl: {
       type: String,
     },

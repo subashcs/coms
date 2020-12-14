@@ -4,6 +4,7 @@ const { rolesRights } = require("../config/roles");
 const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
+const { Token } = require("../models");
 
 const verifyCallback = (req, requiredRights) => {
   if (!req.user) {
@@ -48,6 +49,13 @@ const auth = (...requiredRights) => async (req, res, next) => {
     if (!decoded) throw new ApiError(httpStatus.UNAUTHORIZED, "Invalid Token");
     let currentUser = await User.findById(decoded.sub);
     req.user = currentUser;
+    let tokenDoc = await Token.find({
+      user:
+        currentUser._id /** optional: can implement jwt hash check by storing jwtHash along with Token  in database, it can not block replay of logged out token now */,
+    });
+    if (!tokenDoc) {
+      throw new ApiError(httpStatus.UNAUTHORIZED, "Token Not Registerd");
+    }
     verifyCallback(req, requiredRights);
   } catch (err) {
     next(err);
