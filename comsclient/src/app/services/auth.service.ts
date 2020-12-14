@@ -3,6 +3,7 @@ import { User } from '../models/user/user.model';
 import {HttpClient} from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AlertService } from './alert.service';
 
 type UserWithToken = {user:User,tokens:{access:{token:string,expires:string},refresh:{token:string,expires:string}}}
 
@@ -15,7 +16,7 @@ export class AuthService {
     public currentUser: Observable<UserWithToken>;
   authUrl ="http://localhost:5000/v1/auth";
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient,private alertService:AlertService) { 
     this.currentUserSubject = new BehaviorSubject<UserWithToken>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
     this.isTokenExpired();
@@ -45,12 +46,28 @@ export class AuthService {
 
     return this.http.post(signupUrl, user); 
   }
-  
-  logout() {
-    // remove user from local storage and set current user to null
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
+
+  getUserProfile(email:string){
+    let url = `${this.authUrl}/profile?email=${email}`;
+    return this.http.get(url);
   }
+
+  logout() {
+    let reqBody = {refreshToken:this.currentUserValue.tokens.refresh.token || ""};
+    const logoutUrl = `${this.authUrl}/logout`;
+
+    this.http.post(logoutUrl,reqBody).subscribe( (res)=>{
+    /**
+     *   remove user from local storage and set current user to null
+      */
+      localStorage.removeItem('currentUser');
+      this.currentUserSubject.next(null);
+    },
+     error => {
+      this.alertService.error("Error Logging Out");
+     })
+  }
+
    get accessToken(){
      if(!this.currentUserValue){return ""}
     let currentUserTokens = this.currentUserValue.tokens;

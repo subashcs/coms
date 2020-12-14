@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
 import { CartItem } from 'src/app/models/cart/cart.model';
 import { AlertService } from 'src/app/services/alert.service';
@@ -14,7 +15,9 @@ import { OrderService } from 'src/app/services/order.service';
 export class CheckoutComponent implements OnInit {
   checkoutForm:FormGroup;
 
-  constructor(private fb:FormBuilder,private cartService:CartService,private orderService:OrderService,private alertService:AlertService) { }
+  constructor(private fb:FormBuilder,
+    private router:Router,
+    private cartService:CartService,private orderService:OrderService,private alertService:AlertService) { }
 
   ngOnInit() {
     this.checkoutForm = this.fb.group({
@@ -36,11 +39,13 @@ export class CheckoutComponent implements OnInit {
     this.orderService.createOrder(order).pipe(first()).subscribe(
       res=>{
         console.log(res);
+        this.router.navigate(['/orders']);
         this.alertService.success("Order placed Successfully");
       },error=>{
         this.alertService.error("Error adding order");
       });
   }
+  
   makeOrderPayload(){
     let cartItems:CartItem[] = this.cartService.getCartItems();
     let totalPrice = this.cartService.calculateTotalPrice(cartItems);

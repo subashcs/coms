@@ -12,8 +12,12 @@ type UserQueryReturnType = {
 })
 
 export class UserService {
-  userUrl = "http://localhost:5000/v1/users"
+  userUrl = "http://localhost:5000/v1/users";
   constructor(private http: HttpClient) { }
+    getUseProfile(email:string){
+      let url = `${this.userUrl}`;
+      return this.http.get(url);
+    }
 
     getAll(page:number,limit?:number) {
       let limitQuery = limit?`limit=${limit}`:'';

@@ -38,6 +38,8 @@
       text-align: center;
       img {
         width: 350px;
+        max-height: 350px;
+        border-radius: 50%;
       }
       span.username {
         font-size: 28px;
@@ -46,6 +48,15 @@
     }
     .content-right {
       padding-left: 10px;
+      div {
+        display: flex;
+        flex-direction: column;
+        margin: 15px;
+        .title {
+          padding: 5px;
+          opacity: 0.5;
+        }
+      }
     }
   }
 }

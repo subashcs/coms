@@ -7,6 +7,7 @@ import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { LoginComponent } from './components/login/login.component';
+import { OrderManagerComponent } from './components/order-manager/order-manager.component';
 import { OrderComponent } from './components/order/order.component';
 import { ProductManagerComponent } from './components/product-manager/product-manager.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -17,12 +18,13 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'signup',component:SignupComponent},
   {path:'cart',component:CartComponent},
-  {path:'orders',component:OrderComponent,canActivate:[AuthGuard,AccessGuard]},
+  {path:'orders',component:OrderComponent,canActivate:[AuthGuard]},
   {path:'customers',component:CustomersComponent,canActivate:[AuthGuard,AccessGuard]},
   {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
   {path:'checkout',component:CheckoutComponent},
 
   {path:'admin/products',component:ProductManagerComponent,canActivate:[AuthGuard,AccessGuard]},
+  {path:'admin/orders',component:OrderManagerComponent,canActivate:[AuthGuard,AccessGuard]},
   {path:'',component:DashboardComponent}
 ];
 

@@ -2,18 +2,23 @@
   <div class="modal">
     <div class="content-left">
       <img
-        src="https://www.globalvillagespace.com/wp-content/uploads/2019/05/cristiano-ronaldo-becomes-the-most-followed-instagram-user-1.jpg"
+        src="{{
+          user.avatarUrl ||
+            'https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png'
+        }}"
       />
-      <span class="username"> Ram Prasad </span>
+      <span class="username"> {{ user.name }}</span>
     </div>
     <div class="content-right">
       <div>
-        <span class="title">Address Line <i class="fa fa-map-marker"></i></span>
-        <span class="address"> Kathmandu Nepal</span>
+        <span class="title"><i class="fa fa-map-marker"></i> Address </span>
+        <span class="address">
+          {{ user.address || "Address Not Set" }}
+        </span>
       </div>
       <div>
-        <span class="title">Contact Number <i class="fa fa-phone"></i></span>
-        <span class="phone"> 9823432423</span>
+        <span class="title"> <i class="fa fa-phone"></i> Contact Number</span>
+        <span class="phone"> {{ user.phone || "Contact Number Not Set" }}</span>
       </div>
     </div>
   </div>
