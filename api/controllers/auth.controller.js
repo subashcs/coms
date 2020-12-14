@@ -19,7 +19,12 @@ const login = catchError(async (req, res) => {
   const user = await authService.loginUserWithEmailAndPassword(email, password);
 
   const tokens = await tokenService.generateAuthTokens(user);
-  let userData = { _id: user._id, name: user.name, email: user.email };
+  let userData = {
+    _id: user._id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  };
 
   res.send({ user: userData, tokens });
 });
