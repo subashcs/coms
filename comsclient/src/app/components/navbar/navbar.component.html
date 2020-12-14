@@ -1,4 +1,4 @@
-<nav class="navbar">
+<nav class="navbar" [ngClass]="{ 'navbar-inverse': isScrolled }">
   <div class="icon-with-text left">
     <a href="/" class="icon">
       <img
@@ -9,11 +9,12 @@
   </div>
 
   <a href="#">Home</a>
-  <a *ngIf="isLoggedIn && isSuperAdmin" href="customers">Customers</a>
   <a class="cart-button" href="cart">
     Cart<sup>{{ itemsInCart }}</sup>
   </a>
+  <a *ngIf="isLoggedIn && isSuperAdmin" href="customers">Customers</a>
   <a *ngIf="isLoggedIn && isSuperAdmin" href="admin/products">ManageProducts</a>
+  <a *ngIf="isLoggedIn && isSuperAdmin" href="admin/orders">ManageOrders</a>
   <a *ngIf="isLoggedIn" href="orders">MyOrders</a>
   <a *ngIf="isLoggedIn" href="#" (click)="logout()">LogOut</a>
 

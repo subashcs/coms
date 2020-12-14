@@ -27,6 +27,9 @@ import { OrderFormComponent } from './components/order-form/order-form.component
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { OrderManagerComponent } from './components/order-manager/order-manager.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { EditComponent } from './components/order-manager/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +52,10 @@ import { OrderManagerComponent } from './components/order-manager/order-manager.
     OrderFormComponent,
     CheckoutComponent,
     ProductDetailComponent,
-    OrderManagerComponent
+    OrderManagerComponent,
+    EditUserComponent,
+    ResetPasswordComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

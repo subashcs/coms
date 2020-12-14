@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
@@ -8,16 +8,20 @@ import { CartService } from 'src/app/services/cart.service';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss']
 })
+
+
 export class NavbarComponent implements OnInit {
   isLoggedIn:boolean;
   isSuperAdmin:boolean;
   avatarUrl : string;
-  itemsInCart:number;
+  itemsInCart:number = 0;
+  isScrolled = false;
    constructor(private cartService:CartService ,private authService:AuthService,private router:Router,private route:ActivatedRoute){
     this.cartService.cartItems.subscribe((items)=>{
-      this.itemsInCart = items.length;
+      this.itemsInCart = items.length || 0;
     })
   }
+
 
   ngOnInit() {
     this.authService.currentUser.subscribe((userData:any)=>{
@@ -34,8 +38,13 @@ export class NavbarComponent implements OnInit {
     })
   
   }
-  
-  
+
+  @HostListener("window:scroll")
+  scrollEvent() {
+    console.log("scrolling");
+      this.isScrolled=window.pageYOffset >= 80;
+  }
+
 
  
   logout(){
