@@ -6,6 +6,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { CustomersComponent } from './components/customers/customers.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { LoginComponent } from './components/login/login.component';
 import { EditOrderComponent } from './components/order-manager/edit/edit.component';
 import { OrderManagerComponent } from './components/order-manager/order-manager.component';
@@ -21,7 +22,12 @@ const routes: Routes = [
   {path:'cart',component:CartComponent},
   {path:'orders',component:OrderComponent,canActivate:[AuthGuard]},
   {path:'customers',component:CustomersComponent,canActivate:[AuthGuard,AccessGuard]},
-  {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
+  {path:'profile',canActivate:[AuthGuard],
+   children:[
+     {path:"",component:ProfileComponent},
+     {path:"edit/:email",component:EditUserComponent}
+   ]
+  },
   {path:'checkout',component:CheckoutComponent},
 
   {path:'admin',

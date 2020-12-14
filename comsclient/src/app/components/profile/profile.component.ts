@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from 'src/app/models/user/user.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class ProfileComponent implements OnInit {
   user:any;
-  constructor(private userService:UserService,private authService:AuthService) { }
+  constructor(private userService:UserService,private router:Router,private authService:AuthService) { }
 
   ngOnInit() {
     this.loadUser();
@@ -22,5 +23,10 @@ export class ProfileComponent implements OnInit {
     this.authService.getUserProfile(email).subscribe(user=>{
       this.user = user;
     });
+  }
+  editProfile(email:string){
+    console.log(email);
+    this.router.navigate(["profile","edit",email])
+
   } 
 }

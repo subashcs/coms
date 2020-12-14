@@ -1,0 +1,82 @@
+.float {
+  position: absolute;
+}
+.top {
+  top: 0%;
+}
+.right {
+  right: 0%;
+}
+.profile-background {
+  width: 100%;
+  height: 100%;
+  top: 0%;
+  position: absolute;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  float: grow 1px;
+  margin: 0px auto 10px auto;
+  background-image: linear-gradient(to right, #6f42c1, #88f3ff);
+
+  .lower {
+    width: 100%;
+    height: 50%;
+    top: 50%;
+    position: absolute;
+    background-color: #eeedf1;
+  }
+
+  .modal {
+    position: relative;
+    width: 768px;
+    min-height: 500px;
+    display: flex;
+    flex-direction: row;
+
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    margin: auto auto;
+    z-index: 2;
+    border-radius: 5px;
+    box-shadow: 1px -1px 4px rgb(216, 212, 212);
+    .content-left {
+      display: flex;
+      flex-direction: column;
+      img {
+        width: 350px;
+        max-height: 350px;
+        border-radius: 50%;
+      }
+      span.username {
+        font-weight: 600;
+      }
+    }
+    .content-right {
+      padding-left: 10px;
+      div {
+        display: flex;
+        flex-direction: column;
+        margin: 15px;
+        .title {
+          padding: 5px;
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .profile-background {
+    position: static;
+    .modal {
+      width: 100%;
+      flex-direction: column;
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

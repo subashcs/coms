@@ -1,27 +1,34 @@
 <div class="profile-background">
   <div class="modal">
     <div class="float top right">
-      <button class="btn-secondary"><i class="fa fa-pencil"></i></button>
+      <button class="btn-secondary" (click)="editProfile(user.email)">
+        <i class="fa fa-pencil"></i>
+      </button>
     </div>
     <div class="content-left">
       <img
         src="{{
-          user.avatarUrl ||
-            'https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png'
+          user
+            ? user.avatarUrl
+            : 'https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png'
         }}"
       />
-      <span class="username"> {{ user.name }}</span>
+      <span class="username"> {{ user ? user.name : "loading..." }}</span>
     </div>
     <div class="content-right">
       <div>
         <span class="title"><i class="fa fa-map-marker"></i> Address </span>
         <span class="address">
-          {{ user.address || "Address Not Set" }}
+          {{ user ? user.address || "Address Not Set" : "loading..." }}
         </span>
       </div>
       <div>
         <span class="title"> <i class="fa fa-phone"></i> Contact Number</span>
-        <span class="phone"> {{ user.phone || "Contact Number Not Set" }}</span>
+        <span class="phone">
+          {{
+            user ? user.phone || "Contact Number Not Set" : "loading..."
+          }}</span
+        >
       </div>
     </div>
   </div>
