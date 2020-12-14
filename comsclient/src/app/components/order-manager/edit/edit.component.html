@@ -1,10 +1,17 @@
-<form class="order-form">
+<form
+  *ngIf="order"
+  [formGroup]="orderForm"
+  class="order-form"
+  (ngSubmit)="updateOrder()"
+>
   <div class="form-group">
     <label>Shipping Address</label>
     <input
       type="text"
       name="shippingAddress"
+      formControlName="shippingAddress"
       placeholder="Enter Shipping Address"
+      value="{{ order ? order.shippingAddress : '' }}"
     />
   </div>
 
@@ -13,18 +20,37 @@
 
     <select formControlName="paymentMethod" name="paymentMethod">
       <option value=""></option>
-      <option value="cashondelivery">Cash On Delivery</option>
+      <option
+        value="cashondelivery"
+        selected="{{ order.paymentMethod === 'cashondelivery' }}"
+      >
+        Cash On Delivery
+      </option>
     </select>
   </div>
   <div class="form-group">
     <h3>Change Shipping Status</h3>
 
-    <select formControlName="paymentMethod" name="paymentMethod">
-      <option value="not-shipped">Not Shipped</option>
-      <option value="shipped">Shipped</option>
+    <select formControlName="shippingStatus" name="shippingStatus">
+      <option
+        value="shipped"
+        selected="{{ order.shippingStatus === 'shipped' }}"
+      >
+        Shipped
+      </option>
+
+      <option
+        value="not-shipped"
+        selected="{{ order.shippingStatus === 'not-shipped' }}"
+      >
+        Not Shipped
+      </option>
     </select>
   </div>
   <div class="form-group">
     <button type="submit" class="btn-primary">Update</button>
   </div>
 </form>
+<div *ngIf="!order" class="loader">
+  <p>Loading ...</p>
+</div>

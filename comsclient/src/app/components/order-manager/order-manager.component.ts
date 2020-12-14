@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Order } from 'src/app/models/order/order.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/order.service';
@@ -13,7 +14,13 @@ export class OrderManagerComponent implements OnInit {
   totalCount:number;
   limit:number=3;
   customerId:string;
-  constructor(private orderService:OrderService,private authService:AuthService) { }
+  constructor(private orderService:OrderService,
+              private authService:AuthService,
+              private router:Router
+              ) 
+              {
+
+               }
 
   ngOnInit() {
       this.authService.currentUser.subscribe((curUser)=>{
@@ -33,11 +40,11 @@ export class OrderManagerComponent implements OnInit {
     this.loadOrders(page);
   }
   deleteOrder(order:Order){
-
+    
   }
 
   editOrder(order:Order){
-    
+    this.router.navigate([`admin`,`orders`,`${order._id}`])
   }
 
 }

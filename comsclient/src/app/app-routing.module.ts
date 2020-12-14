@@ -24,9 +24,14 @@ const routes: Routes = [
   {path:'profile',component:ProfileComponent,canActivate:[AuthGuard]},
   {path:'checkout',component:CheckoutComponent},
 
-  {path:'admin/products',component:ProductManagerComponent,canActivate:[AuthGuard,AccessGuard]},
-  {path:'admin/orders',component:OrderManagerComponent,canActivate:[AuthGuard,AccessGuard]},
-  {path:'admin/orders/:orderId',component:EditOrderComponent,canActivate:[AuthGuard,AccessGuard]},
+  {path:'admin',
+  canActivate:[AuthGuard,AccessGuard],
+  children:[
+    {path:'products',component:ProductManagerComponent},
+    {path:'orders',component:OrderManagerComponent},
+    {path:'orders/:orderId',component:EditOrderComponent}
+  ]
+},
   {path:'',component:DashboardComponent}
 ];
 

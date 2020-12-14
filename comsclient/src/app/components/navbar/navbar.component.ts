@@ -18,7 +18,8 @@ export class NavbarComponent implements OnInit {
   isScrolled = false;
    constructor(private cartService:CartService ,private authService:AuthService,private router:Router,private route:ActivatedRoute){
     this.cartService.cartItems.subscribe((items)=>{
-      this.itemsInCart = items.length || 0;
+      
+      this.itemsInCart = items ? items.length : 0;
     })
   }
 
@@ -41,7 +42,6 @@ export class NavbarComponent implements OnInit {
 
   @HostListener("window:scroll")
   scrollEvent() {
-    console.log("scrolling");
       this.isScrolled=window.pageYOffset >= 80;
   }
 
