@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-user',
@@ -6,10 +7,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-user.component.scss']
 })
 export class EditUserComponent implements OnInit {
-
-  constructor() { }
+  userForm :FormGroup;
+  constructor(private fb:FormBuilder) { }
 
   ngOnInit() {
+    this.userForm = this.fb.group({
+      avatarUrl:'',
+      name:'rajan',
+      address:'',
+      phone:''
+    })
+  }
+
+  loadUsers(){
+
+  }
+  onSubmit(){
+    console.log("submitting");
   }
 
 }

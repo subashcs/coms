@@ -1,18 +1,23 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
 
-@Injectable()
+@Injectable(
+  {
+    providedIn: 'root'
+  }
+)
 export class AuthInterceptor implements HttpInterceptor {
-    
-    constructor(private authService:AuthService) {
+    private authService:AuthService;
+    constructor(private injector:Injector) {
 
     }
     
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    this.authService =this.injector.get(AuthService);
     this.authService.isTokenExpired();
 
     req = req.clone({

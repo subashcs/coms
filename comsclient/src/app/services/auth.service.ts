@@ -64,6 +64,7 @@ export class AuthService {
       this.currentUserSubject.next(null);
     },
      error => {
+       console.log(error)
       this.alertService.error("Error Logging Out");
      })
   }
@@ -82,12 +83,8 @@ export class AuthService {
     let currentUserTokens = this.currentUserValue.tokens;
     let token= currentUserTokens.access.token; 
     if( this.hasTokenExpired(token)){
-      this.clearUserCredentials();
+      this.logout();
     }
-  }
-  clearUserCredentials(){
-    localStorage.removeItem('currentUser');
-    this.currentUserSubject.next(null);
   }
 
 
