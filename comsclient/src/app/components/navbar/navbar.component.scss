@@ -1,63 +1,74 @@
+a {
+  padding: 5px;
+  color: #000;
+  text-decoration: none;
+  font-family: monospace;
+  font-weight: bold;
+  img {
+    height: 50px;
+    width: 50px;
+    margin: 0;
+    padding: 0;
+    object-fit: cover;
+  }
+}
 nav.navbar-inverse {
   background-color: #36294493;
   color: #fff;
   a {
     color: #fff;
   }
+  .adminbar {
+    background-color: rgba(44, 40, 40, 0.781);
+  }
 }
 .navbar {
-  font-family: monospace;
-  font-weight: bold;
-  margin: 0px auto;
   background-color: #e5e4e609;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  padding: 5px 15px 5px 0;
-
-  a {
-    padding: 5px;
-    color: #000;
-    text-decoration: none;
-
-    img {
-      height: 50px;
-      width: 50px;
-      margin: 0;
-      padding: 0;
-      object-fit: cover;
-    }
-  }
-  .left {
-    margin-right: auto;
-    margin-left: 5px;
-  }
-  .text-down {
-    flex-direction: column;
-  }
-  .icon-with-text {
+  // border-bottom: 10px groove #757579;
+  display: block;
+  .userbar {
+    font-family: monospace;
+    font-weight: bold;
+    margin: 0px auto;
     display: flex;
+    justify-content: center;
+    text-align: center;
     align-items: center;
-    justify-content: space-between;
-    margin-left: 5%;
-    .icon {
-      width: 50px;
-      height: 50px;
-      border: 0px solid rgb(194, 191, 191);
-      box-shadow: 1px 1px 3px gray;
-      border-radius: 50%;
-      overflow: hidden;
-      align-items: center;
-      justify-content: center;
-      padding: 0;
-      margin: 0;
+    padding: 3px 15px 2px 0;
+    box-sizing: border-box;
+    box-shadow: 4px 1px 3px #000;
+
+    .left {
+      margin-right: auto;
+      margin-left: 5px;
     }
-    span {
-      padding: 5px;
+    .text-down {
+      flex-direction: column;
+    }
+    .icon-with-text {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-left: 5%;
+      .icon {
+        width: 50px;
+        height: 50px;
+        border: 0px solid rgb(194, 191, 191);
+        box-shadow: 1px 1px 3px gray;
+        border-radius: 50%;
+        overflow: hidden;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        margin: 0;
+      }
+      span {
+        padding: 5px;
+      }
     }
   }
 }
+
 .cart-button sup {
   color: #fff;
   font-family: sans-serif;
@@ -68,14 +79,31 @@ nav.navbar-inverse {
   padding: 0px 2px;
   margin: 0;
 }
+
+.adminbar {
+  list-style: none;
+  display: flex;
+  margin: 0;
+  padding: 5px;
+  justify-content: flex-end;
+  align-items: center;
+  li {
+    padding: 5px;
+  }
+}
+
 /* Change styles on  small screens */
 @media screen and (max-width: 450px) {
-  .navbar {
+  .userbar {
     display: flex;
     flex-direction: column;
     .icon-with-text {
       margin-left: 0%;
     }
+  }
+  .adminbar {
+    display: flex;
+    flex-direction: column;
   }
   .left {
     margin: none;

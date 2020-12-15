@@ -1,10 +1,12 @@
 .alert {
   display: block;
   padding: 10px;
+  z-index: 10;
   text-align: right;
 }
 .alert-success {
   color: rgb(32, 202, 32);
+  text-shadow: 1px 1px rgb(192, 187, 187);
 }
 .alert-danger {
   color: rgb(228, 39, 15);

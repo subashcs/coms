@@ -25,7 +25,6 @@ export class ProfileComponent implements OnInit {
     });
   }
   editProfile(email:string){
-    console.log(email);
     this.router.navigate(["profile","edit",email])
 
   } 

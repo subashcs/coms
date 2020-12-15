@@ -14,10 +14,7 @@ type UserQueryReturnType = {
 export class UserService {
   userUrl = "http://localhost:5000/v1/users";
   constructor(private http: HttpClient) { }
-    getUseProfile(email:string){
-      let url = `${this.userUrl}`;
-      return this.http.get(url);
-    }
+   
 
     getAll(page:number,limit?:number) {
       let limitQuery = limit?`limit=${limit}`:'';
@@ -27,9 +24,16 @@ export class UserService {
         return this.http.get<UserQueryReturnType>(url);
     }
 
-   
+    getUser(user:string){
+      let url =`${this.userUrl}/${user}`;
+      return this.http.get(url);
+    }
+    updateUser(userId:string,body:any){
+      let url  = `${this.userUrl}/${userId}`;
+      return this.http.patch(url,body);
+    }
 
-    delete(id: number) {
+    delete(id: string) {
         return this.http.delete(`${this.userUrl}/${id}`);
     }
 }

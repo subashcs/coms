@@ -1,35 +1,48 @@
 <nav class="navbar" [ngClass]="{ 'navbar-inverse': isScrolled }">
-  <div class="icon-with-text left">
-    <a href="/" class="icon">
-      <img
-        src="https://www.a2bf.com/wp-content/uploads/2017/05/Order-Management-Icon.jpg"
-      />
-    </a>
-    <span>Customer Order Management System (COMS)</span>
-  </div>
+  <ul class="userbar">
+    <li class="icon-with-text left">
+      <a href="/" class="icon">
+        <img
+          src="https://www.a2bf.com/wp-content/uploads/2017/05/Order-Management-Icon.jpg"
+        />
+      </a>
+      <span>Customer Order Management System (COMS)</span>
+    </li>
 
-  <a href="#">Home</a>
-  <a class="cart-button" href="cart">
-    Cart<sup>{{ itemsInCart }}</sup>
-  </a>
-  <a *ngIf="isLoggedIn && isSuperAdmin" href="customers">Customers</a>
-  <a *ngIf="isLoggedIn && isSuperAdmin" href="admin/products">ManageProducts</a>
-  <a *ngIf="isLoggedIn && isSuperAdmin" href="admin/orders">ManageOrders</a>
-  <a *ngIf="isLoggedIn" href="orders">MyOrders</a>
-  <a *ngIf="isLoggedIn" href="#" (click)="logout()">LogOut</a>
+    <li><a href="#">Home</a></li>
+    <li>
+      <a class="cart-button" href="cart">
+        Cart<sup>{{ itemsInCart }}</sup>
+      </a>
+    </li>
+    <li><a *ngIf="isLoggedIn" href="orders">MyOrders</a></li>
+    <li><a *ngIf="isLoggedIn" href="#" (click)="logout()">LogOut</a></li>
 
-  <div *ngIf="isLoggedIn; else notLoggedIn" class="icon-with-text">
-    <a href="profile" class="icon">
-      <img
-        src="{{
-          avatarUrl ||
-            'https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png'
-        }}"
-      />
-    </a>
-    <span>Profile</span>
-  </div>
-  <ng-template #notLoggedIn>
-    <a href="/login">Login</a>
-  </ng-template>
+    <li *ngIf="isLoggedIn; else notLoggedIn" class="icon-with-text">
+      <a href="profile" class="icon">
+        <img
+          src="{{
+            avatarUrl ||
+              'https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png'
+          }}"
+        />
+      </a>
+      <span>Profile</span>
+    </li>
+    <ng-template #notLoggedIn>
+      <li><a href="/login">Login</a></li>
+    </ng-template>
+  </ul>
+
+  <ul *ngIf="isLoggedIn && isSuperAdmin" class="adminbar">
+    <li>
+      <a href="customers">Customers</a>
+    </li>
+    <li>
+      <a href="admin/products">ManageProducts</a>
+    </li>
+    <li>
+      <a href="admin/orders">ManageOrders</a>
+    </li>
+  </ul>
 </nav>

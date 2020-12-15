@@ -6,13 +6,17 @@
       </button>
     </div>
     <div class="content-left">
-      <img
-        src="{{
-          user
-            ? user.avatarUrl
-            : 'https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png'
-        }}"
-      />
+      <div class="img-container">
+        <img
+          alt="{{ userForm.value.avatarUrl }}"
+          src="{{
+            userForm.value
+              ? userForm.value.avatarUrl
+              : 'https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png'
+          }}"
+        />
+      </div>
+
       <label class="avatarUrl">Avatar Url</label>
       <input
         type="text"
@@ -42,7 +46,6 @@
       </div>
       <div>
         <label class="title"> <i class="fa fa-phone"></i> Contact Number</label>
-
         <input
           type="text"
           name="phone"

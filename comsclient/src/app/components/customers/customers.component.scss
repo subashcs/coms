@@ -16,13 +16,20 @@ h3 {
     justify-content: space-around;
     box-shadow: 2px 4px 7px 0px #00000063;
     border-bottom: 1px solid silver;
-    width: 350px;
+    width: fit-content;
     :last-child {
       border: 0;
     }
-    img {
+    .img-container {
       width: 100px;
+      height: 100px;
+      overflow: hidden;
       border-radius: 50%;
+    }
+    img {
+      width: inherit;
+      height: inherit;
+      object-fit: cover;
     }
     .icon {
       padding-left: 15px;
@@ -36,6 +43,7 @@ h3 {
       display: flex;
       flex-direction: column;
       padding-left: 10px;
+      width: 250px;
     }
   }
 }

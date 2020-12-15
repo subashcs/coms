@@ -45,10 +45,16 @@
       display: flex;
       flex-direction: column;
       text-align: center;
-      img {
-        width: 350px;
-        max-height: 350px;
+      .img-container {
+        height: 300px;
+        width: 300px;
         border-radius: 50%;
+        overflow: hidden;
+      }
+      img {
+        width: inherit;
+        height: inherit;
+        object-fit: cover;
       }
       span.username {
         font-size: 28px;

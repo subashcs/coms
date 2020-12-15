@@ -6,13 +6,17 @@
       </button>
     </div>
     <div class="content-left">
-      <img
-        src="{{
-          user
-            ? user.avatarUrl
-            : 'https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png'
-        }}"
-      />
+      <div class="img-container">
+        <img
+          alt="Avatar Empty"
+          src="{{
+            user
+              ? user.avatarUrl
+              : 'https://www.kindpng.com/picc/m/78-786207_user-avatar-png-user-avatar-icon-png-transparent.png'
+          }}"
+        />
+      </div>
+
       <span class="username"> {{ user ? user.name : "loading..." }}</span>
     </div>
     <div class="content-right">

@@ -44,10 +44,16 @@
     .content-left {
       display: flex;
       flex-direction: column;
-      img {
-        width: 350px;
-        max-height: 350px;
+      .img-container {
+        height: 300px;
+        width: 300px;
         border-radius: 50%;
+        overflow: hidden;
+      }
+      img {
+        width: inherit;
+        height: inherit;
+        object-fit: cover;
       }
     }
     .content-right {
