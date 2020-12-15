@@ -13,6 +13,7 @@ import { OrderManagerComponent } from './components/order-manager/order-manager.
 import { OrderComponent } from './components/order/order.component';
 import { ProductManagerComponent } from './components/product-manager/product-manager.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 import { SignupComponent } from './components/signup/signup.component';
 
 
@@ -38,7 +39,10 @@ const routes: Routes = [
     {path:'orders/:orderId',component:EditOrderComponent}
   ]
 },
-  {path:'',component:DashboardComponent}
+{path:'reset-password',component:ResetPasswordComponent},
+
+  {path:'',component:DashboardComponent},
+
 ];
 
 @NgModule({ 
